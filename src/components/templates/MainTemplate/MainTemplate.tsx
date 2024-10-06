@@ -1,24 +1,13 @@
-'use client';
-
-import React from 'react';
-// import { Tabbar } from '@telegram-apps/telegram-ui';
-// import {
-//   AnalyzeConflict,
-//   AnalyzeMessages,
-//   Diary,
-//   Logo,
-//   Profile,
-// } from '../icons';
 import { Outlet } from 'react-router-dom';
 import { Box } from '@mui/material';
 import { BottomNavigation } from '@/components/entity';
 
-interface MainTemplateProps {
-  header?: React.ReactNode;
-  // children: React.ReactNode;
-}
+// interface MainTemplateProps {
+//   header?: React.ReactNode;
+//   // children: React.ReactNode;
+// }
 
-const MainTemplate = (props: MainTemplateProps) => {
+const MainTemplate = () => {
   // const { header } = props;
   return (
     <Box sx={{ border: '1px solid grey' }}>
