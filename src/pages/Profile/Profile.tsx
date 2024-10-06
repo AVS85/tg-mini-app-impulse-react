@@ -1,8 +1,7 @@
 import { Header } from '@/components/entity';
 import { List } from '@telegram-apps/telegram-ui';
-import type { FC } from 'react';
 
-const Profile: FC = () => {
+const Profile = () => {
   return (
     <List>
       <Header title="Мой профиль" />
