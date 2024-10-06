@@ -3,7 +3,8 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
-  "homepage": "https://telegram-mini-apps.github.io/reactjs-tsdk-template",
+ 
+  "homepage": "https://AVS85.github.io/tg-mini-app-impulse-react",
   "scripts": {
     "deploy": "gh-pages -d dist",
     "dev": "vite",
