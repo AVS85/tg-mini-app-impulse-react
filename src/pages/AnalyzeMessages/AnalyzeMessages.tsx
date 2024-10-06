@@ -7,12 +7,14 @@ import type { FC } from 'react';
 // import { Link } from '@/components/Link/Link.tsx';
 
 // import tonSvg from './ton.svg';
-import BottomNavigation from '@/components/BottomNavigation/BottomNavigation';
+import BottomNavigation from '@/components/entity/BottomNavigation/BottomNavigation';
+import Header from '@/components/entity/header';
 
 const AnalyzeMessages: FC = () => {
   return (
     <List>
-      <BottomNavigation />
+      <Header title="Анализ сообщения" />
+      {/* <BottomNavigation /> */}
       AnalyzeMessages
       {/* <Section
         header='Features'

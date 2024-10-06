@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
- 
   "homepage": "https://AVS85.github.io/tg-mini-app-impulse-react",
   "scripts": {
     "deploy": "gh-pages -d dist",
@@ -15,6 +14,9 @@
     "predeploy": "pnpm run build"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^6.1.2",
     "@telegram-apps/telegram-ui": "^2.1.4",
     "@tonconnect/ui-react": "^2.0.5",
     "@twa-dev/sdk": "^7.0.0",

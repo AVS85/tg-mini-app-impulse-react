@@ -1,3 +1,4 @@
+import { Header } from '@/components/entity';
 import {
   // Section, Cell, Image,
   List,
@@ -7,13 +8,16 @@ import type { FC } from 'react';
 // import { Link } from '@/components/Link/Link.tsx';
 
 // import tonSvg from './ton.svg';
-import BottomNavigation from '@/components/BottomNavigation/BottomNavigation';
+// import BottomNavigation from '@/components/BottomNavigation/BottomNavigation';
+// import { MainTemplate } from '@/components/templates';
 
-export const IndexPage: FC = () => {
+const Chat: FC = () => {
   return (
     <List>
-      <BottomNavigation />
-      123
+      <Header title="Чат и ИИмпульсом" />
+
+      {/* <MainTemplate>1234</MainTemplate> */}
+      {/* <BottomNavigation /> */}
       {/* <Section
         header='Features'
         footer='You can use these pages to learn more about features, provided by Telegram Mini Apps and other useful projects'
@@ -44,3 +48,5 @@ export const IndexPage: FC = () => {
     </List>
   );
 };
+
+export default Chat;

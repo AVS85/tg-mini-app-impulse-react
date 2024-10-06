@@ -2,7 +2,6 @@ import WebApp from '@twa-dev/sdk';
 import { AppRoot } from '@telegram-apps/telegram-ui';
 import { type FC, useEffect } from 'react';
 import {
-  Navigate,
   Route,
   BrowserRouter,
   Routes,
@@ -10,7 +9,14 @@ import {
   useNavigate,
 } from 'react-router-dom';
 
-import { routes } from '@/navigation/routes.tsx';
+import { MainTemplate } from './templates';
+import {
+  AnalyzeConflict,
+  AnalyzeMessages,
+  Chat,
+  DiaryPage,
+  Profile,
+} from '@/pages';
 
 function BackButtonManipulator() {
   const location = useLocation();
@@ -42,11 +48,20 @@ export const App: FC = () => (
     platform={['macos', 'ios'].includes(WebApp.platform) ? 'ios' : 'base'}
   >
     <BrowserRouter>
-      <BackButtonManipulator/>
+      <BackButtonManipulator />
       <Routes>
-        {routes.map((route) => <Route key={route.path} {...route} />)}
-        <Route path='*' element={<Navigate to='/'/>}/>
+        <Route element={<MainTemplate />}>
+          <Route index element={<Chat />} />
+          <Route path="/analyze-conflict" element={<AnalyzeConflict />} />
+          <Route path="/diary" element={<DiaryPage />} />
+          <Route path="/analyze-messages" element={<AnalyzeMessages />} />
+          <Route path="/profile" element={<Profile />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   </AppRoot>
 );
+        // {/* <Route path='*' element={<MainTemplate />}>
+        // {routes.map((route) => <Route key={route.path} {...route} />)}
+        // { path: '/profile', Component: Profile, title: 'Профиль' },
+      

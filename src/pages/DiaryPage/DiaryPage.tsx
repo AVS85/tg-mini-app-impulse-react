@@ -1,18 +1,13 @@
-import {
-  // Section, Cell, Image,
-  List,
-} from '@telegram-apps/telegram-ui';
+import { List } from '@telegram-apps/telegram-ui';
 
-// import { Link } from '@/components/Link/Link.tsx';
-
-// import tonSvg from './ton.svg';
-import BottomNavigation from '@/components/BottomNavigation/BottomNavigation';
+import { Header } from '@/components/entity';
 
 const DiaryPage = () => {
   return (
     <List>
-      <BottomNavigation />
-      DiaryPage
+      <Header title="Дневник эмоций" />
+
+      {/* <BottomNavigation /> */}
       {/* <Section
         header='Features'
         footer='You can use these pages to learn more about features, provided by Telegram Mini Apps and other useful projects'

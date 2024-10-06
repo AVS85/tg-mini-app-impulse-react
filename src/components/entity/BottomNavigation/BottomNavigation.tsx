@@ -8,7 +8,7 @@ import {
   Diary,
   Logo,
   Profile,
-} from '../icons';
+} from '../../icons';
 import { useNavigate } from 'react-router-dom';
 
 const BottomNavigation = () => {

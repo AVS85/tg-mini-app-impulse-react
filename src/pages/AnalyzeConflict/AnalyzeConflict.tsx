@@ -7,12 +7,13 @@ import {
 // import { Link } from '@/components/Link/Link.tsx';
 
 // import tonSvg from './ton.svg';
-import BottomNavigation from '@/components/BottomNavigation/BottomNavigation';
+import { Header } from '@/components/entity';
 
 const AnalyzeConflict = () => {
   return (
     <List>
-      <BottomNavigation />
+      <Header title="Анализ конфликта" />
+      {/* <BottomNavigation /> */}
       AnalyzeConflict
       {/* <Section
         header='Features'
