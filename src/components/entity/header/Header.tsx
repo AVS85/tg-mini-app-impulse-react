@@ -14,7 +14,7 @@ const Header = (props: HeaderI) => {
       <Box
         sx={{
           flex: 1,
-          fontWeight: '500',
+          fontWeight: 'bold',
           fontSize: '20px',
           lineHeight: '22px',
           alignItems: 'center',
