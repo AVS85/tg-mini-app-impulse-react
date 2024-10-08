@@ -11,7 +11,7 @@ interface ChatMessageTextBoxPropsI {
 const styleCommon = {
   display: 'flex',
   padding: '20px 18px',
-  fontSize: '16px',
+  fontSize: '15px',
   lineHeight: '18px',
   width: 'fit-content', // Ширина по содержимому,
 };

@@ -1,4 +1,17 @@
+
+ 
+@font-face {
+	font-family: 'Cygre-SemiBold';
+	src: url('../assets/fonts/cygre-semibold.eot'); /* IE 9 Compatibility Mode */
+	src: url('../assets/fonts/cygre-semibold.eot?#iefix') format('embedded-opentype'), /* IE < 9 */
+		url('../assets/fonts/cygre-semibold.woff2') format('woff2'), /* Super Modern Browsers */
+		url('../assets/fonts/cygre-semibold.woff') format('woff'), /* Firefox >= 3.6, any other modern browser */
+		url('../assets/fonts/cygre-semibold.ttf') format('truetype'), /* Safari, Android, iOS */
+		url('../assets/fonts/cygre-semibold.svg#cygre-semibold') format('svg'); /* Chrome < 4, Legacy iOS */
+}
+
 body {
+  font-family: 'Cygre', sans-serif; /* Примените шрифт ко всему приложению */
   background: var(--tg-theme-secondary-bg-color, white);
   padding: 0;
   margin: 0;

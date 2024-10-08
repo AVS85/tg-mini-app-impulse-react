@@ -24,7 +24,12 @@ const MainTemplate = () => {
       </Box> */}
       <Box
         component="main"
-        sx={{ border: '1px solid red', flex: 1, margin: '2px' }}
+        sx={{
+          border: '1px solid red',
+          flex: 1,
+          // margin: '2px',
+          overflowY: 'scroll',
+        }}
       >
         <Outlet />
       </Box>
