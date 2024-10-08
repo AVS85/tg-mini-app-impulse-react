@@ -20,49 +20,56 @@ const BottomNavigation = () => {
     navigate(path);
     // Здесь можно добавить логику для навигации между экранами
   };
+const listStyle = {
+  // backgroundColor: '#f0f0f0',
+  border: '1px solid red',
+  // padding: '10px',
+  // height: '100vh',
+  position: 'relative',
+};
 
-  return (
-    <Tabbar>
-      <Tabbar.Item
-        onClick={() => handleTabChange(0, '/analyze-messages')}
-        selected={activeTab === 0}
-        text="Анализ Сообщений"
-      >
-        <AnalyzeMessages />
-      </Tabbar.Item>
+return (
+  <Tabbar style={listStyle}>
+    <Tabbar.Item
+      onClick={() => handleTabChange(0, '/analyze-messages')}
+      selected={activeTab === 0}
+      text="Анализ Сообщений"
+    >
+      <AnalyzeMessages />
+    </Tabbar.Item>
 
-      <Tabbar.Item
-        onClick={() => handleTabChange(1, '/diary')}
-        selected={activeTab === 1}
-        text="Дневник эмоций"
-      >
-        <Diary />
-      </Tabbar.Item>
+    <Tabbar.Item
+      onClick={() => handleTabChange(1, '/diary')}
+      selected={activeTab === 1}
+      text="Дневник эмоций"
+    >
+      <Diary />
+    </Tabbar.Item>
 
-      <Tabbar.Item
-        onClick={() => handleTabChange(2, '/')}
-        selected={activeTab === 2}
-      >
-        <Logo />
-      </Tabbar.Item>
+    <Tabbar.Item
+      onClick={() => handleTabChange(2, '/')}
+      selected={activeTab === 2}
+    >
+      <Logo />
+    </Tabbar.Item>
 
-      <Tabbar.Item
-        onClick={() => handleTabChange(3, '/analyze-conflict')}
-        selected={activeTab === 3}
-        text="Анализ конфликта"
-      >
-        <AnalyzeConflict />
-      </Tabbar.Item>
+    <Tabbar.Item
+      onClick={() => handleTabChange(3, '/analyze-conflict')}
+      selected={activeTab === 3}
+      text="Анализ конфликта"
+    >
+      <AnalyzeConflict />
+    </Tabbar.Item>
 
-      <Tabbar.Item
-        onClick={() => handleTabChange(4, '/profile')}
-        selected={activeTab === 4}
-        text="Мой профиль"
-      >
-        <Profile />
-      </Tabbar.Item>
-    </Tabbar>
-  );
+    <Tabbar.Item
+      onClick={() => handleTabChange(4, '/profile')}
+      selected={activeTab === 4}
+      text="Мой профиль"
+    >
+      <Profile />
+    </Tabbar.Item>
+  </Tabbar>
+);
 };
 
 export default BottomNavigation;
