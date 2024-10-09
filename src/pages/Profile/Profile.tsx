@@ -1,39 +1,41 @@
+import { Button } from '@/components/atoms';
 import { Header } from '@/components/entity';
-import { List } from '@telegram-apps/telegram-ui';
+import { ProfileFilledIcon } from '@/components/icons';
+import { Box } from '@mui/material';
 
 const Profile = () => {
   return (
-    <List>
+    <>
       <Header title="Мой профиль" />
-
-      {/* <Section
-        header='Features'
-        footer='You can use these pages to learn more about features, provided by Telegram Mini Apps and other useful projects'
+      <Box
+        sx={{
+          // border: '1px solid red',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flex: 1,
+        }}
       >
-        <Link to='/ton-connect'>
-          <Cell
-            before={<Image src={tonSvg} style={{ backgroundColor: '#007AFF' }}/>}
-            subtitle='Connect your TON wallet'
-          >
-            TON Connect
-          </Cell>
-        </Link>
-      </Section>
-      <Section
-        header='Application Launch Data'
-        footer='These pages help developer to learn more about current launch information'
-      >
-        <Link to='/init-data'>
-          <Cell subtitle='User data, chat information, technical data'>Init Data</Cell>
-        </Link>
-        <Link to='/launch-params'>
-          <Cell subtitle='Platform identifier, Mini Apps version, etc.'>Launch Parameters</Cell>
-        </Link>
-        <Link to='/theme-params'>
-          <Cell subtitle='Telegram application palette information'>Theme Parameters</Cell>
-        </Link>
-      </Section> */}
-    </List>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '40px',
+            overflow: 'auto',
+          }}
+        >
+          <ProfileFilledIcon sx={{ fontSize: '60px' }} />
+          <Box>Имя Фамилия</Box>
+          <Box>Почта@email.ru</Box>
+          <Box>30 лет</Box>
+          <Box>Настроение</Box>
+          <Box>Детали подписки</Box>
+          <Button title="Выбрать план" backgroundType="filled" />
+        </Box>
+      </Box>
+    </>
   );
 };
 

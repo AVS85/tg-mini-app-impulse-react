@@ -1,22 +1,22 @@
 import { Button as ButtonMUI, SvgIconProps } from '@mui/material';
 
-interface ButtonIconPropsI {
+interface ButtonPropsI {
   icon?: React.FC<SvgIconProps>;
   type?: 'round' | 'square';
   backgroundType?: 'transparent' | 'filled';
   title?: string;
 }
 
-const Button = (props: ButtonIconPropsI) => {
+const Button = (props: ButtonPropsI) => {
   const { icon, type = 'square', backgroundType, title } = props;
 
-  // const backgroundColor = (() => {
-  //   if (backgroundType === 'filled') {
-  //     return '#00A99A';
-  //   } else {
-  //     return 'transparent';
-  //   }
-  // })();
+  const backgroundColor = (() => {
+    if (backgroundType === 'filled') {
+      return '#00A99A';
+    } else {
+      return 'transparent';
+    }
+  })();
 
   // const borderRadius = (() => {
   //   if (type === 'round') {
@@ -31,16 +31,17 @@ const Button = (props: ButtonIconPropsI) => {
       variant="contained"
       color="primary"
       sx={{
-        // borderRadius,
-        width: 42,
-        minWidth: 42,
-        height: 42,
-        minHeight: 42,
+        borderRadius: '11px',
+        textTransform: 'none',
+        // width: 42,
+        // minWidth: 42,
+        height: 50,
+        minHeight: 50,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
 
-        // backgroundColor: backgroundColor,
+        backgroundColor: backgroundColor,
         // '&:hover': {
         //   backgroundColor: backgroundColor,
         // },

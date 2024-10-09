@@ -16,7 +16,7 @@ const WelcomeBox = (props: WelcomeBoxI) => {
         gap: '40px',
         // padding: '18px 20px',
         // alignItems: 'center',
-        height: '198px',
+        // height: '198px',
         fontSize: '24px',
         color: '#1F2F57',
       }}

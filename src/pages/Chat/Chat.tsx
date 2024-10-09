@@ -26,7 +26,7 @@ const Chat = () => {
         // overflow: 'hidden',
       }}
     >
-      <Header title="Чат и ИИмпульсом" />
+      <Header title="Чат с ИИмпульсом" />
 
       <Box
         component="section"

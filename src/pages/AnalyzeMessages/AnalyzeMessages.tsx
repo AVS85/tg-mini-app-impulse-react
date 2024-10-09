@@ -1,40 +1,36 @@
-import { List } from '@telegram-apps/telegram-ui';
+import { Button } from '@/components/atoms';
 import Header from '@/components/entity/header';
+import { WelcomeBox } from '@/components/molecules';
+import { Box } from '@mui/material';
 
 const AnalyzeMessages = () => {
   return (
-    <List>
+    <>
       <Header title="Анализ сообщения" />
-      {/* <BottomNavigation /> */}
-      AnalyzeMessages
-      {/* <Section
-        header='Features'
-        footer='You can use these pages to learn more about features, provided by Telegram Mini Apps and other useful projects'
+      <Box
+        sx={{
+          // border: '1px solid red',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flex: 1,
+        }}
       >
-        <Link to='/ton-connect'>
-          <Cell
-            before={<Image src={tonSvg} style={{ backgroundColor: '#007AFF' }}/>}
-            subtitle='Connect your TON wallet'
-          >
-            TON Connect
-          </Cell>
-        </Link>
-      </Section>
-      <Section
-        header='Application Launch Data'
-        footer='These pages help developer to learn more about current launch information'
-      >
-        <Link to='/init-data'>
-          <Cell subtitle='User data, chat information, technical data'>Init Data</Cell>
-        </Link>
-        <Link to='/launch-params'>
-          <Cell subtitle='Platform identifier, Mini Apps version, etc.'>Launch Parameters</Cell>
-        </Link>
-        <Link to='/theme-params'>
-          <Cell subtitle='Telegram application palette information'>Theme Parameters</Cell>
-        </Link>
-      </Section> */}
-    </List>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '40px',
+            overflow: 'auto',
+          }}
+        >
+          <WelcomeBox title="Дневник эмоций позволяет вам следить за общим состоянием эмоционального фона и отслеживать прогресс" />
+          <Button title="Добавить запись" backgroundType="filled" />
+        </Box>
+      </Box>
+    </>
   );
 };
 
