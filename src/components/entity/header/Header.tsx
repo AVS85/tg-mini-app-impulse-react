@@ -10,7 +10,12 @@ const Header = (props: HeaderI) => {
   const { title } = props;
   return (
     <Box
-      sx={{ display: 'flex', border: '1px solid red', padding: '18px 20px' }}
+      sx={{
+        // border: '1px solid red',
+        display: 'flex',
+        padding: '18px 20px',
+        alignItems: 'center',
+      }}
     >
       <Box
         sx={{

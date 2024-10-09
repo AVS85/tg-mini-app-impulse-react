@@ -1,11 +1,17 @@
-import { List } from '@telegram-apps/telegram-ui';
+// import { List } from '@telegram-apps/telegram-ui';
+import { Button } from '@/components/atoms';
 import { Header } from '@/components/entity';
+import { WelcomeBox } from '@/components/molecules';
+import { Box } from '@mui/material';
 
 const AnalyzeConflict = () => {
   return (
-    <List>
+    <>
       <Header title="Анализ конфликта" />
-      AnalyzeConflict
+      <Box>
+        <WelcomeBox title="Анализ конфликтов позволит вам лучше понять собеседника и разобраться в возникающих разногласиях" />
+        <Button title="Разобрать конфликт" />
+      </Box>
       {/* <Section
         header='Features'
         footer='You can use these pages to learn more about features, provided by Telegram Mini Apps and other useful projects'
@@ -33,7 +39,7 @@ const AnalyzeConflict = () => {
           <Cell subtitle='Telegram application palette information'>Theme Parameters</Cell>
         </Link>
       </Section> */}
-    </List>
+    </>
   );
 };
 
