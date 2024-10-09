@@ -17,6 +17,7 @@ import {
   DiaryPage,
   Profile,
 } from '@/pages';
+import { ThemeProvider, createTheme } from '@mui/material';
 
 function BackButtonManipulator() {
   const location = useLocation();
@@ -42,24 +43,48 @@ function BackButtonManipulator() {
   return null;
 }
 
+const theme = createTheme({
+  components: {
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          '& .MuiOutlinedInput-root': {
+            borderRadius: '13px',
+            border: '1px solid #D8DDDF',
+          },
+          '& .MuiInputLabel-root.Mui-focused': {
+            // color: 'darkblue',
+            border: '1px solid #D8DDDF',
+          },
+          '&:hover fieldset': {
+            borderColor: '#D8DDDF', // Цвет рамки при наведении
+          },
+        },
+      },
+    },
+  },
+});
+
 export const App: FC = () => (
-  <AppRoot
-    appearance={WebApp.colorScheme}
-    platform={['macos', 'ios'].includes(WebApp.platform) ? 'ios' : 'base'}
-  >
-    <BrowserRouter>
-      <BackButtonManipulator />
-      <Routes>
-        <Route element={<MainTemplate />}>
-          <Route index element={<Chat />} />
-          <Route path="/analyze-conflict" element={<AnalyzeConflict />} />
-          <Route path="/diary" element={<DiaryPage />} />
-          <Route path="/analyze-messages" element={<AnalyzeMessages />} />
-          <Route path="/profile" element={<Profile />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  </AppRoot>
+  <ThemeProvider theme={theme}>
+    <AppRoot
+      appearance={WebApp.colorScheme}
+      platform={['macos', 'ios'].includes(WebApp.platform) ? 'ios' : 'base'}
+    >
+      <BrowserRouter>
+        <BackButtonManipulator />
+        <Routes>
+          <Route element={<MainTemplate />}>
+            <Route index element={<Chat />} />
+            <Route path="/analyze-conflict" element={<AnalyzeConflict />} />
+            <Route path="/diary" element={<DiaryPage />} />
+            <Route path="/analyze-messages" element={<AnalyzeMessages />} />
+            <Route path="/profile" element={<Profile />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </AppRoot>
+  </ThemeProvider>
 );
         // {/* <Route path='*' element={<MainTemplate />}>
         // {routes.map((route) => <Route key={route.path} {...route} />)}

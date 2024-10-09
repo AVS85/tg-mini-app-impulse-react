@@ -17,6 +17,8 @@ const MainTemplate = () => {
         display: 'flex',
         flexDirection: 'column',
         height: '100vh',
+        maxHeight: '100vh',
+        // overflow: 'hidden',
       }}
     >
       {/* <Box component="header">
@@ -25,15 +27,19 @@ const MainTemplate = () => {
       <Box
         component="main"
         sx={{
-          border: '1px solid red',
+          // border: '4px solid red',
+          display: 'flex',
+          flexDirection: 'column',
           flex: 1,
-          // margin: '2px',
-          overflowY: 'scroll',
+          // maxHeight: '100%',
+          // height: '100%',
         }}
       >
         <Outlet />
       </Box>
-      <BottomNavigation />
+      <Box>
+        <BottomNavigation />
+      </Box>
     </Box>
   );
 };
