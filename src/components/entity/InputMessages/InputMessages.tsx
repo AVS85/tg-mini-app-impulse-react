@@ -1,8 +1,12 @@
-'use client';
+import { Box, SvgIcon } from '@mui/material';
+import { ButtonIcon, Input } from '@/components/atoms';
+import MicIcon from '@mui/icons-material/Mic';
 
-import { Box } from '@mui/material';
-import { ButtonRound, Input } from '@/components/atoms';
-import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
+const CustomMicIcon = () => (
+  <SvgIcon>
+    <MicIcon sx={{ color: '#1E2F57' }} />
+  </SvgIcon>
+);
 
 const InputMessages = () => {
   return (
@@ -20,7 +24,7 @@ const InputMessages = () => {
       }}
     >
       <Input id="1" fullWidth placeholder="Введите сообщение" />
-      <ButtonRound Icon={KeyboardVoiceIcon} />
+      <ButtonIcon Icon={CustomMicIcon} type="round" />
     </Box>
   );
 };

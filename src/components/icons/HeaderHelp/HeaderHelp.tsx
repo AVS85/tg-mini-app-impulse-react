@@ -1,5 +1,7 @@
-const HeaderHelp = () => {
-  return (
+import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
+
+const HeaderHelp: React.FC<SvgIconProps> = (props): JSX.Element => (
+  <SvgIcon {...props} viewBox="0 0 19 25">
     <svg
       width="27"
       height="23"
@@ -42,7 +44,7 @@ const HeaderHelp = () => {
         />
       </defs>
     </svg>
-  );
-};
+  </SvgIcon>
+);
 
 export default HeaderHelp;

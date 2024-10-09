@@ -1,3 +1,4 @@
+import { ButtonIcon } from '@/components/atoms';
 import { HeaderHelp } from '../../icons';
 import { Box } from '@mui/material';
 
@@ -23,7 +24,7 @@ const Header = (props: HeaderI) => {
         {title}
       </Box>
       <Box>
-        <HeaderHelp />
+        <ButtonIcon type="square" Icon={HeaderHelp} />
       </Box>
     </Box>
   );
