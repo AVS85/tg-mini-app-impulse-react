@@ -1,4 +1,5 @@
 import { Button as ButtonMUI, SvgIconProps } from '@mui/material';
+import { Text } from '@/components/atoms';
 
 interface ButtonPropsI {
   icon?: React.FC<SvgIconProps>;
@@ -33,8 +34,6 @@ const Button = (props: ButtonPropsI) => {
       sx={{
         borderRadius: '11px',
         textTransform: 'none',
-        // width: 42,
-        // minWidth: 42,
         height: 50,
         minHeight: 50,
         display: 'flex',
@@ -48,7 +47,11 @@ const Button = (props: ButtonPropsI) => {
         boxShadow: '4px 4px 14.9px -6px #A8B7D5, -3px -3px 5.3px 0px #FFFFFFB2',
       }}
     >
-      {title}
+      {title && (
+        <Text.h2 bold color="#FFF">
+          {title}
+        </Text.h2>
+      )}
     </ButtonMUI>
   );
 };
