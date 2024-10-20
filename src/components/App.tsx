@@ -18,6 +18,7 @@ import {
   Profile,
 } from '@/pages';
 import { ThemeProvider, createTheme } from '@mui/material';
+import { appTheme } from '@/common/theme';
 
 function BackButtonManipulator() {
   const location = useLocation();
@@ -43,27 +44,7 @@ function BackButtonManipulator() {
   return null;
 }
 
-const theme = createTheme({
-  components: {
-    MuiTextField: {
-      styleOverrides: {
-        root: {
-          '& .MuiOutlinedInput-root': {
-            borderRadius: '13px',
-            border: '1px solid #D8DDDF',
-          },
-          '& .MuiInputLabel-root.Mui-focused': {
-            // color: 'darkblue',
-            border: '1px solid #D8DDDF',
-          },
-          '&:hover fieldset': {
-            borderColor: '#D8DDDF', // Цвет рамки при наведении
-          },
-        },
-      },
-    },
-  },
-});
+const theme = createTheme(appTheme);
 
 export const App: FC = () => (
   <ThemeProvider theme={theme}>
