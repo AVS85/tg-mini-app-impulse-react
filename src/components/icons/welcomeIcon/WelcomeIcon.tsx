@@ -30,7 +30,7 @@ const HeaderHelp: React.FC<SvgIconProps> = (props): JSX.Element => (
           fill="#EFF1F2"
         />
       </g>
-      <g clip-path="url(#clip0_79_1148)">
+      <g clipPath="url(#clip0_79_1148)">
         <rect
           x="58.3751"
           y="90"
@@ -63,9 +63,9 @@ const HeaderHelp: React.FC<SvgIconProps> = (props): JSX.Element => (
           width="186"
           height="187.5"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -134,9 +134,9 @@ const HeaderHelp: React.FC<SvgIconProps> = (props): JSX.Element => (
           width="81"
           height="82.5"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"

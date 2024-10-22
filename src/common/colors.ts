@@ -1,5 +1,6 @@
 export const appUI = {
   colors: {
+    white: '#FFF',
     black: '#000',
     mainBlue: '#1E2F57',
     gradient1: 'linear-gradient(0deg, #1DE4CB 0%, #54A3BE 100%)',
