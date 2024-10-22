@@ -16,6 +16,7 @@ import {
   Chat,
   DiaryPage,
   Profile,
+  Subscription,
 } from '@/pages';
 import { ThemeProvider, createTheme } from '@mui/material';
 import { appTheme } from '@/common/theme';
@@ -61,6 +62,7 @@ export const App: FC = () => (
             <Route path="/diary" element={<DiaryPage />} />
             <Route path="/analyze-messages" element={<AnalyzeMessages />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/subscription" element={<Subscription />} />
           </Route>
         </Routes>
       </BrowserRouter>

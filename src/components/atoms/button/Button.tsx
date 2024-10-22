@@ -6,10 +6,11 @@ interface ButtonPropsI {
   type?: 'round' | 'square';
   backgroundType?: 'transparent' | 'filled';
   title?: string;
+  onClick?: () => void;
 }
 
 const Button = (props: ButtonPropsI) => {
-  const { icon, type = 'square', backgroundType, title } = props;
+  const { icon, type = 'square', backgroundType, title, onClick } = props;
 
   const backgroundColor = (() => {
     if (backgroundType === 'filled') {
@@ -31,6 +32,7 @@ const Button = (props: ButtonPropsI) => {
     <ButtonMUI
       variant="contained"
       color="primary"
+      onClick={onClick}
       sx={{
         borderRadius: '11px',
         textTransform: 'none',

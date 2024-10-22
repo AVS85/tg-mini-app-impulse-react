@@ -1,14 +1,11 @@
 import { Button, Text } from '@/components/atoms';
 import { Header } from '@/components/entity';
 import { Box } from '@mui/material';
-import ProfileStatistic from './ProfileStatistic';
-import { useNavigate } from 'react-router-dom';
 
-const Profile = () => {
-  const navigate = useNavigate();
+const Subscription = () => {
   return (
     <>
-      <Header title="Мой профиль" />
+      <Header title="Оформить подписку" />
       <Box
         sx={{
           // border: '1px solid red',
@@ -28,8 +25,6 @@ const Profile = () => {
             overflow: 'auto',
           }}
         >
-          <ProfileStatistic />
-
           <Box
             sx={{
               display: 'flex',
@@ -39,11 +34,7 @@ const Profile = () => {
             }}
           >
             <Text.h2 bold>Детали подписки</Text.h2>
-            <Button
-              title="Выбрать план"
-              backgroundType="filled"
-              onClick={() => navigate('/subscription')}
-            />
+            <Button title="Выбрать план" backgroundType="filled" />
           </Box>
         </Box>
       </Box>
@@ -51,4 +42,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default Subscription;
