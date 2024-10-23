@@ -63,7 +63,7 @@ const BottomNavigation = () => {
             height: '50px',
             boxShadow: 0,
           }}
-          onClick={() => handleTabChange(1, '/diary')}
+          onClick={() => handleTabChange(1, '/diary-emotions')}
         />
       </Box>
       <Box>

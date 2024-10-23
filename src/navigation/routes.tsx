@@ -6,7 +6,12 @@ import { LaunchParamsPage } from '@/pages/LaunchParamsPage/LaunchParamsPage.tsx'
 import { ThemeParamsPage } from '@/pages/ThemeParamsPage/ThemeParamsPage.tsx';
 import { TONConnectPage } from '@/pages/TONConnectPage/TONConnectPage';
 
-import { AnalyzeConflict, AnalyzeMessages, DiaryPage, Profile } from '@/pages';
+import {
+  AnalyzeConflict,
+  AnalyzeMessages,
+  DiaryEmotions,
+  Profile,
+} from '@/pages';
 
 interface Route {
   path: string;
@@ -24,7 +29,7 @@ export const routes: Route[] = [
   },
   {
     path: '/diary',
-    Component: DiaryPage,
+    Component: DiaryEmotions,
     title: 'Анализ конфликта',
   },
   {

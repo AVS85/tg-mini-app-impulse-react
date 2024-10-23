@@ -1,12 +1,20 @@
 // import { List } from '@telegram-apps/telegram-ui';
 import { appUI } from '@/common/colors';
-import { Button, ButtonIcon, ContentBox, Text } from '@/components/atoms';
+import {
+  Button,
+  ButtonIcon,
+  ChatMessageTextBox,
+  ContentBox,
+  Input,
+  Text,
+} from '@/components/atoms';
 import { Header } from '@/components/entity';
 import { Plus } from '@/components/icons';
 import { WelcomeBox } from '@/components/molecules';
 import { Box } from '@mui/material';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Fragment, useState } from 'react';
+
+import { mockChat } from './mockChat';
 
 interface WelcomeLayerPropsI {
   onClick: () => void;
@@ -115,33 +123,60 @@ const ConflictListLayer = (props: ConflictListLayerPropsI) => {
   );
 };
 
-const AnalyzeConflictPage = () => {
-  const navigate = useNavigate();
+const AnalyzeConflictChatPage = () => {
   const [isDisplayWelcomeLayer, setIsDisplayWelcomeLayer] = useState(true);
 
   const handleClickStart = () => setIsDisplayWelcomeLayer((bool) => !bool);
-  const handleCreateConflict = () => navigate('/analyze-conflict-chat');
+  const handleCreateConflict = () => {};
   return (
     <>
       <Header title="Анализ конфликта" />
       <Box
         sx={{
-          // outline: '1px solid grey', //TODO delete
+          outline: '1px solid grey', //TODO delete
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+
           flex: 1,
           width: '100%',
         }}
       >
-        {isDisplayWelcomeLayer && <WelcomeLayer onClick={handleClickStart} />}
-        {!isDisplayWelcomeLayer && (
-          <ConflictListLayer onClick={handleCreateConflict} />
-        )}
+        {/* CHAT */}
+        <Box
+          component="section"
+          sx={{
+            border: '1px solid green',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '20px',
+            // padding: '20px',
+            alignItems: 'center',
+            overflowY: 'scroll',
+            // flexGrow: 1,
+            flex: 1,
+            // maxHeight: '100%',
+            height: '100%',
+          }}
+        >
+          {/* <ChatMessageDateBox value="Понедельник 21.07.2024" /> */}
+          {mockChat.map((el, index) => {
+            return (
+              <Fragment key={index}>
+                <ChatMessageTextBox value={el.partyB} party="PARTY_B" />
+                <ChatMessageTextBox value={el.partyA} party="PARTY_A" />
+              </Fragment>
+            );
+          })}
+        </Box>
+        {/* CONTROL */}
+        <Box>
+          <Input fullWidth />
+        </Box>
       </Box>
     </>
   );
 };
 
-export default AnalyzeConflictPage;
+export default AnalyzeConflictChatPage;

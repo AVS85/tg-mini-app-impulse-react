@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import { Box } from '@mui/material';
+import { Container, Box } from '@mui/material';
 import { BottomNavigation } from '@/components/entity';
 
 // interface MainTemplateProps {
@@ -10,7 +10,7 @@ import { BottomNavigation } from '@/components/entity';
 const MainTemplate = () => {
   // const { header } = props;
   return (
-    <Box
+    <Container
       sx={{
         // border: '3px solid red',
         backgroundColor: '#EFF1F2',
@@ -33,6 +33,7 @@ const MainTemplate = () => {
           flex: 1,
           // maxHeight: '100%',
           // height: '100%',
+          // width: '100%',
         }}
       >
         <Outlet />
@@ -40,7 +41,7 @@ const MainTemplate = () => {
       <Box>
         <BottomNavigation />
       </Box>
-    </Box>
+    </Container>
   );
 };
 
