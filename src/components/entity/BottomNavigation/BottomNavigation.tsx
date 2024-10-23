@@ -10,6 +10,8 @@ import {
   Profile,
 } from '../../icons';
 import { useNavigate } from 'react-router-dom';
+import { Box } from '@mui/material';
+import { ButtonIcon } from '@/components/atoms';
 
 const BottomNavigation = () => {
   const navigate = useNavigate();
@@ -20,56 +22,110 @@ const BottomNavigation = () => {
     navigate(path);
     // Здесь можно добавить логику для навигации между экранами
   };
-const listStyle = {
-  // backgroundColor: '#f0f0f0',
-  border: '1px solid red',
-  // padding: '10px',
-  // height: '100vh',
-  position: 'relative',
-};
+  const listStyle = {
+    // backgroundColor: '#f0f0f0',
+    border: '1px solid red',
+    // padding: '10px',
+    // height: '100vh',
+    position: 'relative',
+  };
 
-return (
-  <Tabbar style={listStyle}>
-    <Tabbar.Item
-      onClick={() => handleTabChange(0, '/analyze-messages')}
-      selected={activeTab === 0}
-      text="Анализ Сообщений"
+  return (
+    <Box
+      sx={{
+        border: '1px solid red',
+        display: 'flex',
+        justifyContent: 'space-between',
+      }}
     >
       <AnalyzeMessages />
-    </Tabbar.Item>
+      <Box
+        sx={
+          {
+            // border: '1px solid grey'
+          }
+        }
+      >
+        <ButtonIcon title="Анализ Сообщений" Icon={AnalyzeMessages} />
+      </Box>
+      <Box
+        sx={
+          {
+            // border: '1px solid grey'
+          }
+        }
+      >
+        <ButtonIcon title="Дневник эмоций" Icon={Diary} />
+      </Box>
+      <Box
+        sx={
+          {
+            // border: '1px solid grey'
+          }
+        }
+      >
+        <ButtonIcon Icon={Logo} />
+      </Box>
+      <Box
+        sx={
+          {
+            // border: '1px solid grey'
+          }
+        }
+      >
+        <ButtonIcon title="Анализ конфликта" Icon={AnalyzeConflict} />
+      </Box>
+      <Box
+        sx={
+          {
+            // border: '1px solid grey'
+          }
+        }
+      >
+        <ButtonIcon title="Мой профиль" Icon={Profile} />
+      </Box>
+    </Box>
+    // <Tabbar style={listStyle}>
+    //   <Tabbar.Item
+    //     onClick={() => handleTabChange(0, '/analyze-messages')}
+    //     selected={activeTab === 0}
+    //     text="Анализ Сообщений"
+    //   >
+    //     <AnalyzeMessages />
+    //   </Tabbar.Item>
 
-    <Tabbar.Item
-      onClick={() => handleTabChange(1, '/diary')}
-      selected={activeTab === 1}
-      text="Дневник эмоций"
-    >
-      <Diary />
-    </Tabbar.Item>
+    //   <Tabbar.Item
+    //     onClick={() => handleTabChange(1, '/diary')}
+    //     selected={activeTab === 1}
+    //     text="Дневник эмоций"
+    //   >
+    //     <Diary />
+    //   </Tabbar.Item>
 
-    <Tabbar.Item
-      onClick={() => handleTabChange(2, '/')}
-      selected={activeTab === 2}
-    >
-      <Logo />
-    </Tabbar.Item>
+    //   <Tabbar.Item
+    //     onClick={() => handleTabChange(2, '/')}
+    //     selected={activeTab === 2}
+    //   >
+    //     <Logo />
+    //   </Tabbar.Item>
 
-    <Tabbar.Item
-      onClick={() => handleTabChange(3, '/analyze-conflict')}
-      selected={activeTab === 3}
-      text="Анализ конфликта"
-    >
-      <AnalyzeConflict />
-    </Tabbar.Item>
+    //   <Tabbar.Item
+    //     onClick={() => handleTabChange(3, '/analyze-conflict')}
+    //     selected={activeTab === 3}
+    //     text="Анализ конфликта"
+    //   >
+    //     <AnalyzeConflict />
+    //   </Tabbar.Item>
 
-    <Tabbar.Item
-      onClick={() => handleTabChange(4, '/profile')}
-      selected={activeTab === 4}
-      text="Мой профиль"
-    >
-      <Profile />
-    </Tabbar.Item>
-  </Tabbar>
-);
+    //   <Tabbar.Item
+    //     onClick={() => handleTabChange(4, '/profile')}
+    //     selected={activeTab === 4}
+    //     text="Мой профиль"
+    //   >
+    //     <Profile />
+    //   </Tabbar.Item>
+    // </Tabbar>
+  );
 };
 
 export default BottomNavigation;

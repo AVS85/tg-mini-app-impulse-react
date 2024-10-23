@@ -1,13 +1,25 @@
 import { Button, SvgIconProps } from '@mui/material';
+import { Text } from '@/components/atoms';
 
 interface ButtonIconPropsI {
-  Icon: React.FC<SvgIconProps>;
+  Icon: React.FC<SvgIconProps>; //JSX.Element
   type?: 'round' | 'square';
   backgroundType?: 'transparent' | 'filled';
+  title?: string | any;
+  // titlePosition?: 'bottom' | 'left'
+  enableBoxShadow?: boolean;
 }
 
 const ButtonIcon = (props: ButtonIconPropsI) => {
-  const { Icon, type = 'square', backgroundType } = props;
+  const {
+    Icon,
+    type = 'square',
+    backgroundType,
+    title,
+    enableBoxShadow,
+  } = props;
+
+  const isTitleExist = Boolean(title);
 
   const backgroundColor = (() => {
     if (backgroundType === 'filled') {
@@ -30,6 +42,7 @@ const ButtonIcon = (props: ButtonIconPropsI) => {
       variant="contained"
       color="primary"
       sx={{
+        backgroundColor: backgroundColor,
         borderRadius,
         width: 42,
         minWidth: 42,
@@ -38,15 +51,17 @@ const ButtonIcon = (props: ButtonIconPropsI) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        flexDirection: 'column', //TODO titlePosition
+        gap: '4px', //TODO titlePosition
 
-        backgroundColor: backgroundColor,
         '&:hover': {
           backgroundColor: backgroundColor,
         },
-        boxShadow: '2px 2px 10px 0px #A8B7D5, -2px -2px 4.3px 0px #FFFFFF',
+        // boxShadow: '2px 2px 10px 0px #A8B7D5, -2px -2px 4.3px 0px #FFFFFF',
       }}
     >
-      <Icon />
+      <Icon height="24px" />
+      {isTitleExist && <Text.subtitle>{title}</Text.subtitle>}
     </Button>
   );
 };
