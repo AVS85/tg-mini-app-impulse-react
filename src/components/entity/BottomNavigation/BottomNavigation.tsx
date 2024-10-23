@@ -10,8 +10,9 @@ import {
   Profile,
 } from '../../icons';
 import { useNavigate } from 'react-router-dom';
-import { Box } from '@mui/material';
+import { Box, colors } from '@mui/material';
 import { ButtonIcon } from '@/components/atoms';
+import { appUI } from '@/common/colors';
 
 const BottomNavigation = () => {
   const navigate = useNavigate();
@@ -33,58 +34,82 @@ const BottomNavigation = () => {
   return (
     <Box
       sx={{
-        border: '1px solid red',
+        // border: '1px solid red',
         display: 'flex',
         justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: '20px',
       }}
     >
-      <AnalyzeMessages />
-      <Box
-        sx={
-          {
-            // border: '1px solid grey'
-          }
-        }
-      >
-        <ButtonIcon title="Анализ Сообщений" Icon={AnalyzeMessages} />
+      <Box>
+        <ButtonIcon
+          title="Анализ Сообщений"
+          Icon={AnalyzeMessages}
+          // iconProps={{ fill: 'red' }}
+          sxProps={{
+            width: '50px',
+            height: '50px',
+            boxShadow: 0,
+          }}
+          onClick={() => handleTabChange(0, '/analyze-messages')}
+        />
       </Box>
-      <Box
-        sx={
-          {
-            // border: '1px solid grey'
-          }
-        }
-      >
-        <ButtonIcon title="Дневник эмоций" Icon={Diary} />
+      <Box>
+        <ButtonIcon
+          title="Дневник эмоций"
+          Icon={Diary}
+          sxProps={{
+            width: '50px',
+            height: '50px',
+            boxShadow: 0,
+          }}
+          onClick={() => handleTabChange(1, '/diary')}
+        />
       </Box>
-      <Box
-        sx={
-          {
-            // border: '1px solid grey'
-          }
-        }
-      >
-        <ButtonIcon Icon={Logo} />
+      <Box>
+        <ButtonIcon
+          Icon={Logo}
+          iconProps={{
+            // fill: 'red',
+            width: '33px',
+            height: '28px',
+          }}
+          sxProps={{
+            width: '75px',
+            height: '75px',
+            boxShadow: 0,
+            border: `1px solid ${appUI.colors.mono[200]}`,
+            borderRadius: '50%',
+          }}
+          onClick={() => handleTabChange(2, '/')}
+        />
       </Box>
-      <Box
-        sx={
-          {
-            // border: '1px solid grey'
-          }
-        }
-      >
-        <ButtonIcon title="Анализ конфликта" Icon={AnalyzeConflict} />
+      <Box>
+        <ButtonIcon
+          title="Анализ конфликта"
+          Icon={AnalyzeConflict}
+          sxProps={{
+            width: '50px',
+            height: '50px',
+            boxShadow: 0,
+          }}
+          onClick={() => handleTabChange(3, '/analyze-conflict')}
+        />
       </Box>
-      <Box
-        sx={
-          {
-            // border: '1px solid grey'
-          }
-        }
-      >
-        <ButtonIcon title="Мой профиль" Icon={Profile} />
+      <Box>
+        <ButtonIcon
+          title="Мой профиль"
+          Icon={Profile}
+          sxProps={{
+            width: '50px',
+            height: '50px',
+            boxShadow: 0,
+          }}
+          onClick={() => handleTabChange(4, '/profile')}
+        />
       </Box>
     </Box>
+
     // <Tabbar style={listStyle}>
     //   <Tabbar.Item
     //     onClick={() => handleTabChange(0, '/analyze-messages')}

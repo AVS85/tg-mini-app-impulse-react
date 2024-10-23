@@ -1,4 +1,4 @@
-import { Button, SvgIconProps } from '@mui/material';
+import { Button, SvgIconProps, SxProps } from '@mui/material';
 import { Text } from '@/components/atoms';
 
 interface ButtonIconPropsI {
@@ -8,6 +8,9 @@ interface ButtonIconPropsI {
   title?: string | any;
   // titlePosition?: 'bottom' | 'left'
   enableBoxShadow?: boolean;
+  iconProps?: SvgIconProps;
+  sxProps?: SxProps;
+  onClick?: () => void;
 }
 
 const ButtonIcon = (props: ButtonIconPropsI) => {
@@ -16,7 +19,10 @@ const ButtonIcon = (props: ButtonIconPropsI) => {
     type = 'square',
     backgroundType,
     title,
-    enableBoxShadow,
+    // enableBoxShadow,
+    iconProps,
+    sxProps = {},
+    onClick,
   } = props;
 
   const isTitleExist = Boolean(title);
@@ -41,8 +47,10 @@ const ButtonIcon = (props: ButtonIconPropsI) => {
     <Button
       variant="contained"
       color="primary"
+      onClick={onClick}
       sx={{
         backgroundColor: backgroundColor,
+        // border: 0,
         borderRadius,
         width: 42,
         minWidth: 42,
@@ -53,14 +61,18 @@ const ButtonIcon = (props: ButtonIconPropsI) => {
         alignItems: 'center',
         flexDirection: 'column', //TODO titlePosition
         gap: '4px', //TODO titlePosition
+        boxShadow: '2px 2px 10px 0px #A8B7D5, -2px -2px 4.3px 0px #FFFFFF',
 
         '&:hover': {
           backgroundColor: backgroundColor,
         },
-        // boxShadow: '2px 2px 10px 0px #A8B7D5, -2px -2px 4.3px 0px #FFFFFF',
+        '&:active': {
+          backgroundColor: 'transparent',
+        },
+        ...sxProps,
       }}
     >
-      <Icon height="24px" />
+      <Icon {...iconProps} />
       {isTitleExist && <Text.subtitle>{title}</Text.subtitle>}
     </Button>
   );
