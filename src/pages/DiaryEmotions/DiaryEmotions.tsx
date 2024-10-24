@@ -1,4 +1,3 @@
-import { Header } from '@/components/entity';
 import { WelcomeBox } from '@/components/molecules';
 import { Button } from '@/components/atoms';
 import { Box } from '@mui/material';

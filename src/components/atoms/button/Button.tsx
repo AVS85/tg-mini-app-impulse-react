@@ -55,6 +55,7 @@ const Button = (props: ButtonPropsI) => {
         //   backgroundColor: backgroundColor,
         // },
         boxShadow: '4px 4px 14.9px -6px #A8B7D5, -3px -3px 5.3px 0px #FFFFFFB2',
+        width: 'auto',
         ...sxProps,
       }}
     >

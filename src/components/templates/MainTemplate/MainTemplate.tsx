@@ -18,12 +18,13 @@ const MainTemplate = () => {
         flexDirection: 'column',
         height: '100vh',
         maxHeight: '100vh',
-        width: '769px',
+        width: '100%',
+        maxWidth: '769px',
         // overflow: 'hidden',
       }}
     >
       <Box component="header">
-        <Header title="123" />
+        <Header />
       </Box>
       <Box
         component="main"
