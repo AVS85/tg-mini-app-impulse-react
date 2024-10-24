@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { Box, colors } from '@mui/material';
 import { ButtonIcon } from '@/components/atoms';
 import { appUI } from '@/common/colors';
+import { RouterPathEnum } from '@/components/App';
 
 const BottomNavigation = () => {
   const navigate = useNavigate();
@@ -51,7 +52,7 @@ const BottomNavigation = () => {
             height: '50px',
             boxShadow: 0,
           }}
-          onClick={() => handleTabChange(0, '/analyze-messages')}
+          onClick={() => handleTabChange(0, RouterPathEnum.ANALYZE_MESSAGES)}
         />
       </Box>
       <Box>
@@ -63,7 +64,7 @@ const BottomNavigation = () => {
             height: '50px',
             boxShadow: 0,
           }}
-          onClick={() => handleTabChange(1, '/diary-emotions')}
+          onClick={() => handleTabChange(1, RouterPathEnum.DIARY_EMOTIONS)}
         />
       </Box>
       <Box>
@@ -81,7 +82,7 @@ const BottomNavigation = () => {
             border: `1px solid ${appUI.colors.mono[200]}`,
             borderRadius: '50%',
           }}
-          onClick={() => handleTabChange(2, '/')}
+          onClick={() => handleTabChange(2, RouterPathEnum.INDEX)}
         />
       </Box>
       <Box>
@@ -93,7 +94,7 @@ const BottomNavigation = () => {
             height: '50px',
             boxShadow: 0,
           }}
-          onClick={() => handleTabChange(3, '/analyze-conflict')}
+          onClick={() => handleTabChange(3, RouterPathEnum.ANALYZE_CONFLICT)}
         />
       </Box>
       <Box>
@@ -105,7 +106,7 @@ const BottomNavigation = () => {
             height: '50px',
             boxShadow: 0,
           }}
-          onClick={() => handleTabChange(4, '/profile')}
+          onClick={() => handleTabChange(4, RouterPathEnum.PROFILE)}
         />
       </Box>
     </Box>

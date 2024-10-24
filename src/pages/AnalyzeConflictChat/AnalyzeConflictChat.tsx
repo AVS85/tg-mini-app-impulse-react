@@ -6,6 +6,7 @@ import {
   ChatMessageTextBox,
   ContentBox,
   Input,
+  ScrollBox,
   Text,
 } from '@/components/atoms';
 import { Header } from '@/components/entity';
@@ -129,80 +130,51 @@ const AnalyzeConflictChatPage = () => {
   const handleClickStart = () => setIsDisplayWelcomeLayer((bool) => !bool);
   const handleCreateConflict = () => {};
   return (
-    <>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
+      {/* CHAT */}
+
+      <ScrollBox>
+        <>
+          {mockChat.map((el, index) => {
+            return (
+              <Fragment key={index}>
+                <ChatMessageTextBox value={el.partyB} party="PARTY_B" />
+                <ChatMessageTextBox value={el.partyA} party="PARTY_A" />
+              </Fragment>
+            );
+          })}
+        </>
+      </ScrollBox>
+
+      {/* CONTROL */}
       <Box
         sx={{
-          // outline: '1px solid grey', //TODO delete
-          height: '100%',
+          // border: '1px solid red',
           display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
           flexDirection: 'column',
-          // flex: 1,
-          // width: '100%',
+          width: '100%',
+          gap: '20px',
         }}
       >
-        {/* CHAT */}
-        <Box
-          sx={{
-            height: '100%',
-            // outline: '1px solid grey', //TODO delete
-            overflowY: 'scroll',
-          }}
-        >
-          <Box
-            sx={{
-              // border: '1px solid green',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '20px',
-              // padding: '20px',
-              alignItems: 'center',
-              // overflowY: 'scroll',
-              // flexGrow: 1,
-              flex: 1,
-              // maxHeight: '100%',
-              // height: '100%',
-            }}
-          >
-            {/* <ChatMessageDateBox value="Понедельник 21.07.2024" /> */}
-            {mockChat.map((el, index) => {
-              return (
-                <Fragment key={index}>
-                  <ChatMessageTextBox value={el.partyB} party="PARTY_B" />
-                  <ChatMessageTextBox value={el.partyA} party="PARTY_A" />
-                </Fragment>
-              );
-            })}
-          </Box>
+        <Box sx={{ paddingX: '12px' }}>
+          <Input fullWidth />
         </Box>
-
-        {/* CONTROL */}
-        <Box
-          sx={{
-            // border: '1px solid red',
-            display: 'flex',
-            flex: 1,
-            flexDirection: 'column',
-            width: '100%',
-            gap: '20px',
-          }}
-        >
-          <Box sx={{ paddingX: '12px' }}>
-            <Input fullWidth />
-          </Box>
-          <Box sx={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
-            <Button
-              sxProps={{ backgroundColor: appUI.colors.mainBlue }}
-              backgroundType="filled"
-              title="Дополнить"
-            />
-            <ButtonIcon Icon={Basket} />
-            <ButtonIcon Icon={Save} />
-          </Box>
+        <Box sx={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
+          <Button
+            sxProps={{ backgroundColor: appUI.colors.mainBlue }}
+            backgroundType="filled"
+            title="Дополнить"
+          />
+          <ButtonIcon Icon={Basket} />
+          <ButtonIcon Icon={Save} />
         </Box>
       </Box>
-    </>
+    </Box>
   );
 };
 

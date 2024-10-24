@@ -3,8 +3,6 @@ import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 const Logo = (props: SvgIconProps): JSX.Element => {
   const { fill = '#1F2F57', width = '33px', height = '28px' } = props;
 
-  console.log('props', props);
-
   return (
     <SvgIcon sx={{ width, height }}>
       <path

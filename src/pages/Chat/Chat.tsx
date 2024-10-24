@@ -7,9 +7,7 @@ import { InputMessages } from '@/components/entity';
 import { Box } from '@mui/material';
 
 import { mockChat } from './mockChat';
-import { Input } from '@/components/atoms';
 import { Fragment } from 'react/jsx-runtime';
-import { appUI } from '@/common/colors';
 
 const Chat = () => {
   return (

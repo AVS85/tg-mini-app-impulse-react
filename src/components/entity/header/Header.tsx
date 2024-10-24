@@ -4,11 +4,13 @@ import { Box } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import { RouterPathEnum } from '@/components/App';
 
-interface HeaderI {
-  title?: string;
-}
+// interface HeaderI {
+//   title?: string;
+// }
 
-const Header = (props: HeaderI) => {
+const Header = () => {
+  const location = useLocation();
+
   const headerTitleVariants = {
     [RouterPathEnum.INDEX]: 'Чат с ИИмпульсом',
     [RouterPathEnum.ANALYZE_CONFLICT]: 'Анализ конфликта',
@@ -19,26 +21,9 @@ const Header = (props: HeaderI) => {
     [RouterPathEnum.SUBSCRIPTION]: 'Оформить подписку',
   };
 
-  const location = useLocation();
   const titleHeader =
     headerTitleVariants?.[location.pathname as RouterPathEnum];
-  console.log('location', {
-    location,
-    a: RouterPathEnum.INDEX,
-    titleHeader,
-  });
 
-  // export enum RouterPathEnum {
-  //   'INDEX' = '/',
-  //   'ANALYZE_CONFLICT' = '/analyze-conflict',
-  //   'ANALYZE_CONFLICT_CHAT' = '/analyze-conflict-chat',
-  //   'ANALYZE_MESSAGES' = '/analyze-messages',
-  //   'DIARY_EMOTIONS' = '/diary-emotions',
-  //   'PROFILE' = '/profile',
-  //   'SUBSCRIPTION' = '/subscription',
-  // }
-
-  // const { title } = props;
   return (
     <Box
       sx={{

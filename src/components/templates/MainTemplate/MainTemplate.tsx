@@ -12,7 +12,7 @@ const MainTemplate = () => {
   return (
     <Container
       sx={{
-        border: '1px solid grey',
+        // border: '1px solid grey',
         backgroundColor: '#EFF1F2',
         display: 'flex',
         flexDirection: 'column',
@@ -36,7 +36,13 @@ const MainTemplate = () => {
       >
         <Outlet />
       </Box>
-      <Box sx={{ border: '1px solid grey' }}>
+      <Box
+        sx={
+          {
+            // border: '1px solid grey'
+          }
+        }
+      >
         <BottomNavigation />
       </Box>
     </Container>
