@@ -12,7 +12,7 @@ const Header = () => {
   const location = useLocation();
 
   const headerTitleVariants = {
-    [RouterPathEnum.INDEX]: 'Чат с ИИмпульсом',
+    [RouterPathEnum.INDEX]: 'Чат с ИИмпульсом !',
     [RouterPathEnum.ANALYZE_CONFLICT]: 'Анализ конфликта',
     [RouterPathEnum.ANALYZE_CONFLICT_CHAT]: 'Анализ конфликта',
     [RouterPathEnum.ANALYZE_MESSAGES]: 'Анализ сообщения',
@@ -42,7 +42,7 @@ const Header = () => {
           alignItems: 'center',
         }}
       >
-        <Text.h1 bold>{titleHeader}!</Text.h1>
+        <Text.h1 bold>{titleHeader}</Text.h1>
       </Box>
       <Box>
         <ButtonIcon type="square" Icon={HeaderHelp} />
