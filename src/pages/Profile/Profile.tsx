@@ -8,7 +8,6 @@ const Profile = () => {
   const navigate = useNavigate();
   return (
     <>
-      <Header title="Мой профиль" />
       <Box
         sx={{
           // border: '1px solid red',

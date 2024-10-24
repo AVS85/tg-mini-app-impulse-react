@@ -6,7 +6,6 @@ import { Box } from '@mui/material';
 const DiaryEmotions = () => {
   return (
     <>
-      <Header title="Дневник эмоций" />
       <Box
         sx={{
           // border: '1px solid red',

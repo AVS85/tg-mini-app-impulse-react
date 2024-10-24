@@ -123,7 +123,6 @@ const AnalyzeConflictPage = () => {
   const handleCreateConflict = () => navigate('/analyze-conflict-chat');
   return (
     <>
-      <Header title="Анализ конфликта" />
       <Box
         sx={{
           // outline: '1px solid grey', //TODO delete

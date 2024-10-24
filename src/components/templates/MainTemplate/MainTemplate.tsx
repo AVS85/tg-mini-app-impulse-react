@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { Container, Box } from '@mui/material';
-import { BottomNavigation } from '@/components/entity';
+import { BottomNavigation, Header } from '@/components/entity';
 
 // interface MainTemplateProps {
 //   header?: React.ReactNode;
@@ -12,7 +12,7 @@ const MainTemplate = () => {
   return (
     <Container
       sx={{
-        // border: '3px solid red',
+        border: '1px solid grey',
         backgroundColor: '#EFF1F2',
         display: 'flex',
         flexDirection: 'column',
@@ -22,24 +22,21 @@ const MainTemplate = () => {
         // overflow: 'hidden',
       }}
     >
-      {/* <Box component="header">
+      <Box component="header">
         <Header title="123" />
-      </Box> */}
+      </Box>
       <Box
         component="main"
         sx={{
-          // border: '4px solid red',
+          // border: '1px solid red',
           display: 'flex',
-          flexDirection: 'column',
-          flex: 1,
-          // maxHeight: '100%',
-          // height: '100%',
-          // width: '100%',
+          height: '100%',
+          overflowY: 'hidden',
         }}
       >
         <Outlet />
       </Box>
-      <Box>
+      <Box sx={{ border: '1px solid grey' }}>
         <BottomNavigation />
       </Box>
     </Container>

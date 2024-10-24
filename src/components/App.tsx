@@ -22,6 +22,16 @@ import {
 import { ThemeProvider, createTheme } from '@mui/material';
 import { appTheme } from '@/common/theme';
 
+export enum RouterPathEnum {
+  'INDEX' = '/',
+  'ANALYZE_CONFLICT' = '/analyze-conflict',
+  'ANALYZE_CONFLICT_CHAT' = '/analyze-conflict-chat',
+  'ANALYZE_MESSAGES' = '/analyze-messages',
+  'DIARY_EMOTIONS' = '/diary-emotions',
+  'PROFILE' = '/profile',
+  'SUBSCRIPTION' = '/subscription',
+}
+
 function BackButtonManipulator() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -59,15 +69,27 @@ export const App: FC = () => (
         <Routes>
           <Route element={<MainTemplate />}>
             <Route index element={<Chat />} />
-            <Route path="/analyze-conflict" element={<AnalyzeConflict />} />
             <Route
-              path="/analyze-conflict-chat"
+              path={RouterPathEnum.ANALYZE_CONFLICT}
+              element={<AnalyzeConflict />}
+            />
+            <Route
+              path={RouterPathEnum.ANALYZE_CONFLICT_CHAT}
               element={<AnalyzeConflictChat />}
             />
-            <Route path="/diary-emotions" element={<DiaryEmotions />} />
-            <Route path="/analyze-messages" element={<AnalyzeMessages />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/subscription" element={<Subscription />} />
+            <Route
+              path={RouterPathEnum.DIARY_EMOTIONS}
+              element={<DiaryEmotions />}
+            />
+            <Route
+              path={RouterPathEnum.ANALYZE_MESSAGES}
+              element={<AnalyzeMessages />}
+            />
+            <Route path={RouterPathEnum.PROFILE} element={<Profile />} />
+            <Route
+              path={RouterPathEnum.SUBSCRIPTION}
+              element={<Subscription />}
+            />
           </Route>
         </Routes>
       </BrowserRouter>

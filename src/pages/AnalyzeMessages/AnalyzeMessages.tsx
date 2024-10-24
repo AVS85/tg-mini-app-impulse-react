@@ -6,7 +6,6 @@ import { Box } from '@mui/material';
 const AnalyzeMessages = () => {
   return (
     <>
-      <Header title="Анализ сообщения" />
       <Box
         sx={{
           // border: '1px solid red',

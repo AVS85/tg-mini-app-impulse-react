@@ -130,7 +130,6 @@ const AnalyzeConflictChatPage = () => {
   const handleCreateConflict = () => {};
   return (
     <>
-      <Header title="Анализ конфликта" />
       <Box
         sx={{
           // outline: '1px solid grey', //TODO delete

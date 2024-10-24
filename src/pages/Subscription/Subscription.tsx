@@ -41,7 +41,6 @@ const cards = [
 const Subscription = () => {
   return (
     <>
-      <Header title="Оформить подписку" />
       <Box
         sx={{
           // border: '1px solid red',
