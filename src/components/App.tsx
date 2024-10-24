@@ -13,6 +13,7 @@ import {
   AnalyzeConflict,
   AnalyzeConflictChat,
   AnalyzeMessages,
+  AnalyzeMessagesChat,
   Chat,
   DiaryEmotions,
   Profile,
@@ -26,6 +27,7 @@ export enum RouterPathEnum {
   'ANALYZE_CONFLICT' = '/analyze-conflict',
   'ANALYZE_CONFLICT_CHAT' = '/analyze-conflict-chat',
   'ANALYZE_MESSAGES' = '/analyze-messages',
+  'ANALYZE_MESSAGES_CHAT' = '/analyze-messages-chat',
   'DIARY_EMOTIONS' = '/diary-emotions',
   'PROFILE' = '/profile',
   'SUBSCRIPTION' = '/subscription',
@@ -83,6 +85,10 @@ export const App = () => (
             <Route
               path={RouterPathEnum.ANALYZE_MESSAGES}
               element={<AnalyzeMessages />}
+            />
+            <Route
+              path={RouterPathEnum.ANALYZE_MESSAGES_CHAT}
+              element={<AnalyzeMessagesChat />}
             />
             <Route path={RouterPathEnum.PROFILE} element={<Profile />} />
             <Route

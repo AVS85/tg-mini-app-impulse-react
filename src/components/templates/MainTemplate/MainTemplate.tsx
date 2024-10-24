@@ -33,6 +33,7 @@ const MainTemplate = () => {
           display: 'flex',
           height: '100%',
           overflowY: 'hidden',
+          paddingBottom: '30px',
         }}
       >
         <Outlet />
@@ -40,7 +41,7 @@ const MainTemplate = () => {
       <Box
         sx={
           {
-            // border: '1px solid grey'
+            // border: '1px solid grey',
           }
         }
       >

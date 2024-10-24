@@ -4,10 +4,11 @@ import { Box, SxProps } from '@mui/material';
 interface ScrollBoxPropsI {
   children: React.ReactNode;
   sxProps?: SxProps;
+  verticalAlign?: 'center' | 'flex-end';
 }
 
 const ScrollBox = (props: ScrollBoxPropsI) => {
-  const { children, sxProps } = props;
+  const { children, verticalAlign = 'flex-end', sxProps } = props;
   return (
     <Box
       component="section"

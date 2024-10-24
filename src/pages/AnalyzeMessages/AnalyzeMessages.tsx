@@ -1,22 +1,29 @@
-import { Button, Input } from '@/components/atoms';
-import { WelcomeBox } from '@/components/molecules';
+import { useNavigate } from 'react-router-dom';
 import { Box } from '@mui/material';
-import { useState } from 'react';
+import { RouterPathEnum } from '@/components/App';
+import { WelcomeBox } from '@/components/molecules';
+import { Button, Input, ScrollBox } from '@/components/atoms';
 
-interface WelcomeLayerPropsI {
-  onClick: () => void;
-}
+// interface AnalyzeMessagesPropsI {
+//   onClick: () => void;
+// }
 
-const WelcomeLayer = (props: WelcomeLayerPropsI) => {
-  const { onClick } = props;
+const AnalyzeMessagesPage = () => {
+  const navigate = useNavigate();
+
+  const handleClickStart = () => {
+    navigate(RouterPathEnum.ANALYZE_MESSAGES_CHAT);
+  };
+
   return (
     <Box
       sx={{
-        // border: '1px solid red',
+        border: '1px solid red',
 
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
+        // alignItems: 'center',
+        justifyContent: 'center',
         gap: '80px',
         overflow: 'auto',
         // width: '100%',
@@ -38,36 +45,14 @@ const WelcomeLayer = (props: WelcomeLayerPropsI) => {
       >
         <Input fullWidth />
         <Box>
-          <Button title="Анализ" backgroundType="filled" onClick={onClick} />
+          <Button
+            title="Анализ"
+            backgroundType="filled"
+            onClick={handleClickStart}
+          />
         </Box>
       </Box>
     </Box>
-  );
-};
-
-const AnalyzeMessagesPage = () => {
-  const [isDisplayWelcomeLayer, setIsDisplayWelcomeLayer] = useState(true);
-  const handleClickStart = () => setIsDisplayWelcomeLayer((bool) => !bool);
-
-  return (
-    <>
-      <Box
-        sx={{
-          // outline: '1px solid grey', //TODO delete
-          height: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flex: 1,
-          width: '100%',
-        }}
-      >
-        {isDisplayWelcomeLayer && <WelcomeLayer onClick={handleClickStart} />}
-        {/* {!isDisplayWelcomeLayer && (
-          <ConflictListLayer onClick={handleCreateConflict} />
-        )} */}
-      </Box>
-    </>
   );
 };
 

@@ -120,7 +120,8 @@ const AnalyzeConflictPage = () => {
   const [isDisplayWelcomeLayer, setIsDisplayWelcomeLayer] = useState(true);
 
   const handleClickStart = () => setIsDisplayWelcomeLayer((bool) => !bool);
-  const handleCreateConflict = () => navigate(RouterPathEnum.INDEX);
+  const handleCreateConflict = () =>
+    navigate(RouterPathEnum.ANALYZE_CONFLICT_CHAT);
   return (
     <>
       <Box
