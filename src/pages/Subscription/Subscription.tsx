@@ -1,7 +1,5 @@
 import { Button, Text } from '@/components/atoms';
-import { Header } from '@/components/entity';
 import { Box } from '@mui/material';
-
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';

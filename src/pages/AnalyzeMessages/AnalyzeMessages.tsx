@@ -1,5 +1,4 @@
 import { Button, Input } from '@/components/atoms';
-import Header from '@/components/entity/header';
 import { WelcomeBox } from '@/components/molecules';
 import { Box } from '@mui/material';
 import { useState } from 'react';

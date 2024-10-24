@@ -1,8 +1,12 @@
-import { appUI } from '@/common/colors';
+// import { appUI } from '@/common/colors';
 import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 
 const Basket = (props: SvgIconProps): JSX.Element => {
-  const { fill = appUI.colors.black, width = '21px', height = '24px' } = props;
+  const {
+    // fill = appUI.colors.black,
+    width = '21px',
+    height = '24px',
+  } = props;
 
   return (
     <SvgIcon sx={{ width, height }}>

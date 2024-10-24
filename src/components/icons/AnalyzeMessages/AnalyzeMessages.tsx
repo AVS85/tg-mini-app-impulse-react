@@ -36,12 +36,14 @@ const AnalyzeMessages = (props: SvgIconProps): JSX.Element => {
             stroke="#8D9DA3"
             strokeLinecap="round"
             strokeLinejoin="round"
+            fill={fill}
           />
           <path
             d="M4.60446 7.10699H13.2094"
             stroke="#8D9DA3"
             strokeLinecap="round"
             strokeLinejoin="round"
+            fill={fill}
           />
         </g>
         <defs>

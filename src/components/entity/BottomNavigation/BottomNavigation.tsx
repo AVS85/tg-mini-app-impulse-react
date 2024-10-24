@@ -1,7 +1,5 @@
-'use client';
-
-import React from 'react';
-import { Tabbar } from '@telegram-apps/telegram-ui';
+import { useState } from 'react';
+// import { Tabbar } from '@telegram-apps/telegram-ui';
 import {
   AnalyzeConflict,
   AnalyzeMessages,
@@ -10,27 +8,27 @@ import {
   Profile,
 } from '../../icons';
 import { useNavigate } from 'react-router-dom';
-import { Box, colors } from '@mui/material';
+import { Box } from '@mui/material';
 import { ButtonIcon } from '@/components/atoms';
 import { appUI } from '@/common/colors';
 import { RouterPathEnum } from '@/components/App';
 
 const BottomNavigation = () => {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = React.useState(0);
+  const [_, setActiveTab] = useState(0);
 
   const handleTabChange = (index: number, path: string) => {
     setActiveTab(index);
     navigate(path);
     // Здесь можно добавить логику для навигации между экранами
   };
-  const listStyle = {
-    // backgroundColor: '#f0f0f0',
-    border: '1px solid red',
-    // padding: '10px',
-    // height: '100vh',
-    position: 'relative',
-  };
+  // const listStyle = {
+  //   // backgroundColor: '#f0f0f0',
+  //   border: '1px solid red',
+  //   // padding: '10px',
+  //   // height: '100vh',
+  //   position: 'relative',
+  // };
 
   return (
     <Box

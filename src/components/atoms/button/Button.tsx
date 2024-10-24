@@ -12,8 +12,8 @@ interface ButtonPropsI {
 
 const Button = (props: ButtonPropsI) => {
   const {
-    icon,
-    type = 'square',
+    // icon,
+    // type = 'square',
     backgroundType,
     title,
     onClick,

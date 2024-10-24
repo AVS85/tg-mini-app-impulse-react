@@ -1,5 +1,4 @@
 import { Button, Text } from '@/components/atoms';
-import { Header } from '@/components/entity';
 import { Box } from '@mui/material';
 import ProfileStatistic from './ProfileStatistic';
 import { useNavigate } from 'react-router-dom';

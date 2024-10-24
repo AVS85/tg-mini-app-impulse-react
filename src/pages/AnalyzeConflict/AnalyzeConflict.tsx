@@ -2,7 +2,6 @@
 import { appUI } from '@/common/colors';
 import { RouterPathEnum } from '@/components/App';
 import { Button, ButtonIcon, ContentBox, Text } from '@/components/atoms';
-import { Header } from '@/components/entity';
 import { Plus } from '@/components/icons';
 import { WelcomeBox } from '@/components/molecules';
 import { Box } from '@mui/material';

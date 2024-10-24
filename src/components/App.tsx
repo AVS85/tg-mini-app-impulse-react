@@ -1,12 +1,11 @@
 import WebApp from '@twa-dev/sdk';
 import { AppRoot } from '@telegram-apps/telegram-ui';
-import { type FC, useEffect } from 'react';
 import {
   Route,
   BrowserRouter,
   Routes,
-  useLocation,
-  useNavigate,
+  // useLocation,
+  // useNavigate,
 } from 'react-router-dom';
 
 import { MainTemplate } from './templates';
@@ -33,8 +32,8 @@ export enum RouterPathEnum {
 }
 
 function BackButtonManipulator() {
-  const location = useLocation();
-  const navigate = useNavigate();
+  // const location = useLocation();
+  // const navigate = useNavigate();
 
   // useEffect(() => {
   //   function onClick() {
@@ -58,7 +57,7 @@ function BackButtonManipulator() {
 
 const theme = createTheme(appTheme);
 
-export const App: FC = () => (
+export const App = () => (
   <ThemeProvider theme={theme}>
     <AppRoot
       appearance={WebApp.colorScheme}
