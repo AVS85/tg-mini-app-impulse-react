@@ -3,24 +3,24 @@ import {
   Button,
   ButtonIcon,
   ChatMessageTextBox,
-  ContentBox,
+  // ContentBox,
   Input,
   ScrollBox,
-  Text,
+  // Text,
 } from '@/components/atoms';
-import { Basket, Plus, Save } from '@/components/icons';
-import { WelcomeBox } from '@/components/molecules';
+import { Basket, Save } from '@/components/icons';
+// import { WelcomeBox } from '@/components/molecules';
 import { Box } from '@mui/material';
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 
 import { mockChat } from './mockChat';
 
-interface WelcomeLayerPropsI {
-  onClick: () => void;
-}
-interface ConflictListLayerPropsI {
-  onClick: () => void;
-}
+// interface WelcomeLayerPropsI {
+//   onClick: () => void;
+// }
+// interface ConflictListLayerPropsI {
+//   onClick: () => void;
+// }
 
 // const WelcomeLayer = (props: WelcomeLayerPropsI) => {
 //   const { onClick } = props;
