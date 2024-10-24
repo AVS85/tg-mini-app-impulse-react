@@ -1,4 +1,4 @@
-import { ButtonIcon } from '@/components/atoms';
+import { ButtonIcon, Text } from '@/components/atoms';
 import { HeaderHelp } from '../../icons';
 import { Box } from '@mui/material';
 import { useLocation } from 'react-router-dom';
@@ -42,7 +42,7 @@ const Header = () => {
           alignItems: 'center',
         }}
       >
-        {titleHeader}
+        <Text.h1 bold>{titleHeader}!</Text.h1>
       </Box>
       <Box>
         <ButtonIcon type="square" Icon={HeaderHelp} />
