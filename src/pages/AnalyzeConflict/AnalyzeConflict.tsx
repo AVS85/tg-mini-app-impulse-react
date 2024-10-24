@@ -20,7 +20,7 @@ const WelcomeLayer = (props: WelcomeLayerPropsI) => {
   return (
     <Box
       sx={{
-        border: '1px solid red',
+        // border: '1px solid red',
 
         display: 'flex',
         flexDirection: 'column',

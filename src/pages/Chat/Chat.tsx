@@ -12,7 +12,7 @@ const Chat = () => {
     <Box
       sx={{
         // backgroundColor: 'red',
-        border: '2px solid green',
+        // border: '2px solid green',
         display: 'flex',
         // gap: '20px',
         flexDirection: 'column',
@@ -31,7 +31,7 @@ const Chat = () => {
       <Box
         component="section"
         sx={{
-          border: '2px solid green',
+          // border: '2px solid green',
           display: 'flex',
           flexDirection: 'column',
           gap: '20px',

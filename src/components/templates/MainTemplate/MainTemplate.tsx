@@ -18,6 +18,7 @@ const MainTemplate = () => {
         flexDirection: 'column',
         height: '100vh',
         maxHeight: '100vh',
+        width: '769px',
         // overflow: 'hidden',
       }}
     >

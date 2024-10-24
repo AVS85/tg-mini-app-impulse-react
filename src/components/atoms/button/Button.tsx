@@ -1,4 +1,4 @@
-import { Button as ButtonMUI, SvgIconProps } from '@mui/material';
+import { Button as ButtonMUI, SvgIconProps, SxProps } from '@mui/material';
 import { Text } from '@/components/atoms';
 
 interface ButtonPropsI {
@@ -7,10 +7,18 @@ interface ButtonPropsI {
   backgroundType?: 'transparent' | 'filled';
   title?: string;
   onClick?: () => void;
+  sxProps?: SxProps;
 }
 
 const Button = (props: ButtonPropsI) => {
-  const { icon, type = 'square', backgroundType, title, onClick } = props;
+  const {
+    icon,
+    type = 'square',
+    backgroundType,
+    title,
+    onClick,
+    sxProps,
+  } = props;
 
   const backgroundColor = (() => {
     if (backgroundType === 'filled') {
@@ -47,6 +55,7 @@ const Button = (props: ButtonPropsI) => {
         //   backgroundColor: backgroundColor,
         // },
         boxShadow: '4px 4px 14.9px -6px #A8B7D5, -3px -3px 5.3px 0px #FFFFFFB2',
+        ...sxProps,
       }}
     >
       {title && (

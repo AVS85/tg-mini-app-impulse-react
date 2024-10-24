@@ -9,7 +9,7 @@ import {
   Text,
 } from '@/components/atoms';
 import { Header } from '@/components/entity';
-import { Plus } from '@/components/icons';
+import { Basket, Plus, Save } from '@/components/icons';
 import { WelcomeBox } from '@/components/molecules';
 import { Box } from '@mui/material';
 import { Fragment, useState } from 'react';
@@ -133,46 +133,74 @@ const AnalyzeConflictChatPage = () => {
       <Header title="Анализ конфликта" />
       <Box
         sx={{
-          outline: '1px solid grey', //TODO delete
+          // outline: '1px solid grey', //TODO delete
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-
-          flex: 1,
-          width: '100%',
+          flexDirection: 'column',
+          // flex: 1,
+          // width: '100%',
         }}
       >
         {/* CHAT */}
         <Box
-          component="section"
           sx={{
-            border: '1px solid green',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '20px',
-            // padding: '20px',
-            alignItems: 'center',
-            overflowY: 'scroll',
-            // flexGrow: 1,
-            flex: 1,
-            // maxHeight: '100%',
             height: '100%',
+            // outline: '1px solid grey', //TODO delete
+            overflowY: 'scroll',
           }}
         >
-          {/* <ChatMessageDateBox value="Понедельник 21.07.2024" /> */}
-          {mockChat.map((el, index) => {
-            return (
-              <Fragment key={index}>
-                <ChatMessageTextBox value={el.partyB} party="PARTY_B" />
-                <ChatMessageTextBox value={el.partyA} party="PARTY_A" />
-              </Fragment>
-            );
-          })}
+          <Box
+            sx={{
+              // border: '1px solid green',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '20px',
+              // padding: '20px',
+              alignItems: 'center',
+              // overflowY: 'scroll',
+              // flexGrow: 1,
+              flex: 1,
+              // maxHeight: '100%',
+              // height: '100%',
+            }}
+          >
+            {/* <ChatMessageDateBox value="Понедельник 21.07.2024" /> */}
+            {mockChat.map((el, index) => {
+              return (
+                <Fragment key={index}>
+                  <ChatMessageTextBox value={el.partyB} party="PARTY_B" />
+                  <ChatMessageTextBox value={el.partyA} party="PARTY_A" />
+                </Fragment>
+              );
+            })}
+          </Box>
         </Box>
+
         {/* CONTROL */}
-        <Box>
-          <Input fullWidth />
+        <Box
+          sx={{
+            // border: '1px solid red',
+            display: 'flex',
+            flex: 1,
+            flexDirection: 'column',
+            width: '100%',
+            gap: '20px',
+          }}
+        >
+          <Box sx={{ paddingX: '12px' }}>
+            <Input fullWidth />
+          </Box>
+          <Box sx={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
+            <Button
+              sxProps={{ backgroundColor: appUI.colors.mainBlue }}
+              backgroundType="filled"
+              title="Дополнить"
+            />
+            <ButtonIcon Icon={Basket} />
+            <ButtonIcon Icon={Save} />
+          </Box>
         </Box>
       </Box>
     </>
