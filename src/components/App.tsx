@@ -8,7 +8,7 @@ import {
   // useNavigate,
 } from 'react-router-dom';
 
-import { MainTemplate } from './templates';
+import { MainTemplate, StartTemplate } from './templates';
 import {
   AnalyzeConflict,
   AnalyzeConflictChat,
@@ -21,9 +21,12 @@ import {
 } from '@/pages';
 import { ThemeProvider, createTheme } from '@mui/material';
 import { appTheme } from '@/common/theme';
+import { AuthProvider } from '@/navigation/authProvider';
+import Start from '@/pages/Start';
 
 export enum RouterPathEnum {
   'INDEX' = '/',
+  'CHAT' = '/chat',
   'ANALYZE_CONFLICT' = '/analyze-conflict',
   'ANALYZE_CONFLICT_CHAT' = '/analyze-conflict-chat',
   'ANALYZE_MESSAGES' = '/analyze-messages',
@@ -68,33 +71,43 @@ export const App = () => (
       <BrowserRouter>
         <BackButtonManipulator />
         <Routes>
-          <Route element={<MainTemplate />}>
-            <Route index element={<Chat />} />
-            <Route
-              path={RouterPathEnum.ANALYZE_CONFLICT}
-              element={<AnalyzeConflict />}
-            />
-            <Route
-              path={RouterPathEnum.ANALYZE_CONFLICT_CHAT}
-              element={<AnalyzeConflictChat />}
-            />
-            <Route
-              path={RouterPathEnum.DIARY_EMOTIONS}
-              element={<DiaryEmotions />}
-            />
-            <Route
-              path={RouterPathEnum.ANALYZE_MESSAGES}
-              element={<AnalyzeMessages />}
-            />
-            <Route
-              path={RouterPathEnum.ANALYZE_MESSAGES_CHAT}
-              element={<AnalyzeMessagesChat />}
-            />
-            <Route path={RouterPathEnum.PROFILE} element={<Profile />} />
-            <Route
-              path={RouterPathEnum.SUBSCRIPTION}
-              element={<Subscription />}
-            />
+          <Route element={<StartTemplate />}>
+            {/* <Route path="/login" element={<Start />} /> */}
+          </Route>
+
+          <Route element={<AuthProvider />}>
+            <Route index element={<Start />} />
+            <Route element={<MainTemplate />}>
+              <Route
+                path={RouterPathEnum.ANALYZE_CONFLICT}
+                element={<Chat />}
+              />
+              <Route
+                path={RouterPathEnum.ANALYZE_CONFLICT}
+                element={<AnalyzeConflict />}
+              />
+              <Route
+                path={RouterPathEnum.ANALYZE_CONFLICT_CHAT}
+                element={<AnalyzeConflictChat />}
+              />
+              <Route
+                path={RouterPathEnum.DIARY_EMOTIONS}
+                element={<DiaryEmotions />}
+              />
+              <Route
+                path={RouterPathEnum.ANALYZE_MESSAGES}
+                element={<AnalyzeMessages />}
+              />
+              <Route
+                path={RouterPathEnum.ANALYZE_MESSAGES_CHAT}
+                element={<AnalyzeMessagesChat />}
+              />
+              <Route path={RouterPathEnum.PROFILE} element={<Profile />} />
+              <Route
+                path={RouterPathEnum.SUBSCRIPTION}
+                element={<Subscription />}
+              />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>
