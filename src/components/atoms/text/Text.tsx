@@ -56,6 +56,7 @@ const subtitle = (props: TextPropsI) => {
   const { children, color, bold } = props;
   return (
     <Typography
+      component="span"
       variant="subtitle1"
       fontWeight={bold ? WEIGHT_BOLD : undefined}
       sx={{ color }}

@@ -32,6 +32,7 @@ export const appTheme = {
       fontWeight: 400,
       lineHeight: '11px',
       color: appUI.colors.black,
+      textTransform: 'none',
     },
   },
   components: {
