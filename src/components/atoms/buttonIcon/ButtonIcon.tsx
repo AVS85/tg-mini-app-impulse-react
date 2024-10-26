@@ -50,6 +50,8 @@ const ButtonIcon = (props: ButtonIconPropsI) => {
       onClick={onClick}
       sx={{
         backgroundColor: backgroundColor,
+        textTransform: 'none',
+
         // border: 0,
         borderRadius,
         width: 42,

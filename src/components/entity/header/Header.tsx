@@ -16,6 +16,7 @@ const Header = () => {
     [RouterPathEnum.ANALYZE_CONFLICT]: 'Анализ конфликта',
     [RouterPathEnum.ANALYZE_CONFLICT_CHAT]: 'Анализ конфликта',
     [RouterPathEnum.ANALYZE_MESSAGES]: 'Анализ сообщения',
+    [RouterPathEnum.ANALYZE_MESSAGES_CHAT]: 'Анализ сообщений в чате',
     [RouterPathEnum.DIARY_EMOTIONS]: 'Дневник эмоций',
     [RouterPathEnum.PROFILE]: 'Мой профиль',
     [RouterPathEnum.SUBSCRIPTION]: 'Оформить подписку',
