@@ -64,7 +64,9 @@ const ButtonIcon = (props: ButtonIconPropsI) => {
         boxShadow: '2px 2px 10px 0px #A8B7D5, -2px -2px 4.3px 0px #FFFFFF',
 
         '&:hover': {
+          // border: '1px solid red',
           backgroundColor: backgroundColor,
+          boxShadow: 'inherit',
         },
         '&:active': {
           backgroundColor: 'transparent',

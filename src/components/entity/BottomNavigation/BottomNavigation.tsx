@@ -76,9 +76,11 @@ const BottomNavigation = () => {
           sxProps={{
             width: '75px',
             height: '75px',
-            boxShadow: 0,
+            // boxShadow: 0,
             border: `1px solid ${appUI.colors.mono[200]}`,
             borderRadius: '50%',
+
+            boxShadow: `-1px -1px 3.5px 0px ${appUI.colors.accent[200]} inset, -3px -3px 10.5px 0px #FFFFFFB2, 0px 4px 4px 0px #00000040`,
           }}
           onClick={() => handleTabChange(2, RouterPathEnum.INDEX)}
         />
