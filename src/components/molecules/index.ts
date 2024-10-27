@@ -1,3 +1,4 @@
+export { default as InputPins } from './InputPins';
 export { default as WelcomeBox } from './welcomeBox';
 // export { default as ChatMessageTextBox } from './chatMessageTextBox';
 // export { default as Input } from './input';

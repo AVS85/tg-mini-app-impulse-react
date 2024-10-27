@@ -5,7 +5,7 @@ interface InputPropsI {
   label?: string;
   placeholder?: string;
   variant?: 'outlined';
-  fullWidth: boolean;
+  fullWidth?: boolean;
 }
 
 const Input = (props: InputPropsI) => {

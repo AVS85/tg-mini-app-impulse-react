@@ -16,7 +16,7 @@ import {
   AnalyzeMessagesChat,
   Chat,
   DiaryEmotions,
-  Login,
+  SignUp,
   Profile,
   Subscription,
 } from '@/pages';
@@ -34,6 +34,7 @@ export enum RouterPathEnum {
   'ANALYZE_MESSAGES_CHAT' = '/analyze-messages-chat',
   'DIARY_EMOTIONS' = '/diary-emotions',
   'PROFILE' = '/profile',
+  'SIGN_UP' = '/signUp',
   'SUBSCRIPTION' = '/subscription',
 }
 
@@ -74,7 +75,7 @@ export const App = () => (
         <Routes>
           <Route element={<EmptyTemplate />}>
             <Route index element={<Start />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/signUp" element={<SignUp />} />
           </Route>
 
           <Route element={<AuthProvider />}>

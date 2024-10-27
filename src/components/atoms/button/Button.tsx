@@ -8,6 +8,7 @@ interface ButtonPropsI {
   title?: string;
   onClick?: () => void;
   sxProps?: SxProps;
+  variant?: 'text' | 'contained' | 'outlined';
 }
 
 const Button = (props: ButtonPropsI) => {
@@ -17,6 +18,7 @@ const Button = (props: ButtonPropsI) => {
     backgroundType,
     title,
     onClick,
+    variant,
     sxProps,
   } = props;
 
@@ -38,7 +40,7 @@ const Button = (props: ButtonPropsI) => {
 
   return (
     <ButtonMUI
-      variant="contained"
+      variant={variant}
       color="primary"
       onClick={onClick}
       sx={{
