@@ -7,15 +7,15 @@ import { useNavigate } from 'react-router-dom';
 const StartPage = () => {
   // console.log('[AuthProvider] Redirect...');
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+  const isLogged = false;
+  // const isLogged = true;
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     console.log('Redirect...');
-
-  //     navigate('/login');
-  //   }, 5000);
-  // }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      isLogged ? navigate('/chat') : navigate('/signUp');
+    }, 2000);
+  }, []);
 
   return (
     <>

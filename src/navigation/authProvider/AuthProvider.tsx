@@ -20,8 +20,8 @@ const AuthProvider = () => {
   //   if (authStep === AuthStepperEnum.LOGGED) authStore.setAuthPopupIsDisplay(false);
   // }, [authStep]);
 
-  const isLogged = true;
-  // const isLogged = false;
+  // const isLogged = true;
+  const isLogged = false;
 
   if (isLogged) {
     return <Outlet />;
