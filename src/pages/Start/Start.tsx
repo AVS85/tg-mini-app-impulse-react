@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Aimpulse, ButtonMainOutline } from '@/components/icons';
+import {
+  Aimpulse,
+  // ButtonMainOutline
+} from '@/components/icons';
 import { Box } from '@mui/material';
 import { Text } from '@/components/atoms';
 import { useNavigate } from 'react-router-dom';
