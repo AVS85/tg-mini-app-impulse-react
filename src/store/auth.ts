@@ -11,6 +11,7 @@ export enum AuthStepperEnum {
 class AuthStore {
   rootStore: RootStore;
 
+  authStatus: AuthStepperEnum = AuthStepperEnum.LOGGED;
   // authStatus: AuthStepperEnum = AuthStepperEnum.LOGOUT;
 
   constructor(rootStore: RootStore) {

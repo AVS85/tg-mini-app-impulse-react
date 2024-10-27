@@ -3,12 +3,19 @@ import { Aimpulse, ButtonMainOutline } from '@/components/icons';
 import { Box } from '@mui/material';
 import { Text } from '@/components/atoms';
 import { useNavigate } from 'react-router-dom';
+import { useStores } from '@/store';
+import { AuthStepperEnum } from '@/store/auth';
 
 const StartPage = () => {
   // console.log('[AuthProvider] Redirect...');
+  const { authStore } = useStores();
+  const { authStatus } = authStore;
 
   const navigate = useNavigate();
-  const isLogged = false;
+
+  const isLogged = authStatus === AuthStepperEnum.LOGGED;
+
+  // const isLogged = false;
   // const isLogged = true;
 
   useEffect(() => {

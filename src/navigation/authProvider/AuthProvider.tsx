@@ -2,6 +2,8 @@
 // import { EmptyTemplate } from '@/components/templates';
 import { EmptyTemplate } from '@/components/templates';
 import StartPage from '@/pages/Start';
+import { useStores } from '@/store';
+import { AuthStepperEnum } from '@/store/auth';
 import { observer } from 'mobx-react';
 // import { useEffect } from 'react';
 import { Outlet } from 'react-router';
@@ -12,16 +14,15 @@ import { Outlet } from 'react-router';
 
 const AuthProvider = () => {
   // const navigate = useNavigate();
-  // const { authStore } = useStores();
-  // const { authStep } = authStore;
+  const { authStore } = useStores();
+  const { authStatus } = authStore;
 
   // useEffect(() => {
   //   if (authStep !== AuthStepperEnum.LOGGED) authStore.setAuthPopupIsDisplay(true);
   //   if (authStep === AuthStepperEnum.LOGGED) authStore.setAuthPopupIsDisplay(false);
   // }, [authStep]);
 
-  // const isLogged = true;
-  const isLogged = false;
+  const isLogged = authStatus === AuthStepperEnum.LOGGED;
 
   if (isLogged) {
     return <Outlet />;
