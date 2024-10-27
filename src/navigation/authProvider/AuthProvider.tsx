@@ -1,6 +1,6 @@
 // import { useEffect } from 'react';
-// import { StartTemplate } from '@/components/templates';
-import { StartTemplate } from '@/components/templates';
+// import { EmptyTemplate } from '@/components/templates';
+import { EmptyTemplate } from '@/components/templates';
 import StartPage from '@/pages/Start';
 import { observer } from 'mobx-react';
 // import { useEffect } from 'react';
@@ -20,20 +20,18 @@ const AuthProvider = () => {
   //   if (authStep === AuthStepperEnum.LOGGED) authStore.setAuthPopupIsDisplay(false);
   // }, [authStep]);
 
-  // const isLogged = true;
-  const isLogged = false;
+  const isLogged = true;
+  // const isLogged = false;
 
   if (isLogged) {
     return <Outlet />;
   } else {
     return (
-      <StartTemplate>
+      <EmptyTemplate>
         <StartPage />
-      </StartTemplate>
+      </EmptyTemplate>
     );
   }
-
-  // if (!isLogged) return <StartTemplate>{/* <StartPage /> */}</StartTemplate>;
 };
 
 export default observer(AuthProvider);

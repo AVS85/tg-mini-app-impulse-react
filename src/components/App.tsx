@@ -8,7 +8,7 @@ import {
   // useNavigate,
 } from 'react-router-dom';
 
-import { MainTemplate, StartTemplate } from './templates';
+import { MainTemplate, EmptyTemplate } from './templates';
 import {
   AnalyzeConflict,
   AnalyzeConflictChat,
@@ -16,6 +16,7 @@ import {
   AnalyzeMessagesChat,
   Chat,
   DiaryEmotions,
+  Login,
   Profile,
   Subscription,
 } from '@/pages';
@@ -71,15 +72,18 @@ export const App = () => (
       <BrowserRouter>
         <BackButtonManipulator />
         <Routes>
-          {/* <Route path="/login" element={<Start />} /> */}
+          <Route element={<EmptyTemplate />}>
+            <Route index element={<Start />} />
+            <Route path="/login" element={<Login />} />
+          </Route>
 
           <Route element={<AuthProvider />}>
             <Route element={<MainTemplate />}>
-              {/* <Route element={<StartTemplate />}>
+              {/* <Route element={<EmptyTemplate />}>
               <Route index element={<Start />} />
             </Route> */}
 
-              <Route index path="/" element={<Chat />} />
+              <Route path={RouterPathEnum.CHAT} element={<Chat />} />
               <Route
                 path={RouterPathEnum.ANALYZE_CONFLICT}
                 element={<AnalyzeConflict />}

@@ -21,7 +21,6 @@ const WelcomeLayer = (props: WelcomeLayerPropsI) => {
     <Box
       sx={{
         // border: '1px solid red',
-
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -29,7 +28,10 @@ const WelcomeLayer = (props: WelcomeLayerPropsI) => {
         overflow: 'auto',
       }}
     >
-      <WelcomeBox subtitle="Анализ конфликтов позволит вам лучше понять собеседника и разобраться в возникающих разногласиях" />
+      <WelcomeBox
+        title="Добро пожаловать"
+        subtitle="Зарегистрируйтесь, чтобы начать полноценное общение с импульсом"
+      />
       <Button
         title="Разобрать конфликт"
         backgroundType="filled"

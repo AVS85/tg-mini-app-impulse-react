@@ -1,2 +1,3 @@
 export { default as MainTemplate } from './MainTemplate';
-export { default as StartTemplate } from './StartTemplate';
+export { default as EmptyTemplate } from './EmptyTemplate';
+
