@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Aimpulse, ButtonMainOutline } from '@/components/icons';
 import { Box } from '@mui/material';
 import { Text } from '@/components/atoms';
@@ -7,21 +7,31 @@ import { useStores } from '@/store';
 import { AuthStepperEnum } from '@/store/auth';
 
 const StartPage = () => {
-  // console.log('[AuthProvider] Redirect...');
   const { authStore } = useStores();
   const { authStatus } = authStore;
+  const [preloadPercent, setPreloadPercent] = useState(0);
 
   const navigate = useNavigate();
 
   const isLogged = authStatus === AuthStepperEnum.LOGGED;
 
-  // const isLogged = false;
-  // const isLogged = true;
-
-  useEffect(() => {
+  const redirect = () => {
     setTimeout(() => {
       isLogged ? navigate('/chat') : navigate('/signUp');
-    }, 2000);
+    }, 0);
+  };
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setPreloadPercent((num) => {
+        if (num >= 100) {
+          clearInterval(intervalId);
+          redirect();
+          return 100;
+        }
+        return num + 5;
+      });
+    }, 100);
   }, []);
 
   return (
@@ -68,7 +78,9 @@ const StartPage = () => {
           </Box>
 
           <Box>
-            <Text.body>Скачивание данных 24%</Text.body>
+            <Text.body>{`Скачивание данных ${String(
+              preloadPercent
+            )}%`}</Text.body>
           </Box>
         </Box>
       </Box>
