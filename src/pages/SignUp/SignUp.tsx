@@ -16,18 +16,15 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 interface SignUpStep1PropsI {
-  onClick: () => void;
+  onClickSendPersonalData: () => void;
+  onClickContinueWithoutRegistration: () => void;
 }
 interface SignUpStep2PropsI {
-  onClick: () => void;
+  onClickSendPin: () => void;
 }
 
 const SignUpStep1 = (props: SignUpStep1PropsI) => {
-  const { onClick } = props;
-
-  const handleClickContinueWithoutRegistration = () => {
-    console.log('handleClickContinueWithoutRegistration...');
-  };
+  const { onClickSendPersonalData, onClickContinueWithoutRegistration } = props;
 
   return (
     <Box
@@ -62,7 +59,7 @@ const SignUpStep1 = (props: SignUpStep1PropsI) => {
       <Button
         title="Зарегистрироваться"
         backgroundType="filled"
-        onClick={onClick}
+        onClick={onClickSendPersonalData}
       />
       <Box
         sx={{
@@ -74,7 +71,7 @@ const SignUpStep1 = (props: SignUpStep1PropsI) => {
       >
         <Text.h2
           color={appUI.colors.mono[400]}
-          onClick={handleClickContinueWithoutRegistration}
+          onClick={onClickContinueWithoutRegistration}
           sxProps={{ cursor: 'pointer', userSelect: 'none' }}
         >
           Продолжить без регистрации
@@ -88,16 +85,12 @@ const SignUpStep1 = (props: SignUpStep1PropsI) => {
 };
 
 const SignUpStep2 = (props: SignUpStep2PropsI) => {
-  const { onClick } = props;
-
-  const handleClickContinueWithoutRegistration = () => {
-    console.log('handleClickContinueWithoutRegistration...');
-  };
+  const { onClickSendPin } = props;
 
   return (
     <Box
       sx={{
-        border: '1px solid red',
+        // border: '1px solid red',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -111,7 +104,11 @@ const SignUpStep2 = (props: SignUpStep2PropsI) => {
         subtitle="Введите пятизначный код, который мы отправили вам на почту"
       />
       <InputPins />
-      <Button title="Отправить" backgroundType="filled" onClick={onClick} />
+      <Button
+        title="Отправить"
+        backgroundType="filled"
+        onClick={onClickSendPin}
+      />
     </Box>
   );
 };
@@ -132,17 +129,30 @@ const SignUpPage = () => {
     navigate(RouterPathEnum.CHAT);
   };
 
+  const handleClickContinueWithoutRegistration = () => {
+    /** переход в чат без регистрации */
+    navigate(RouterPathEnum.CHAT);
+  };
+
   return (
     <ScrollBox
       sxProps={{
         // border: '1px solid red',
         paddingY: '20px',
+        justifyContent: 'center',
       }}
     >
       {signUpStep === 'STEP1' && (
-        <SignUpStep1 onClick={handleClickSendPersonData} />
+        <SignUpStep1
+          onClickSendPersonalData={handleClickSendPersonData}
+          onClickContinueWithoutRegistration={
+            handleClickContinueWithoutRegistration
+          }
+        />
       )}
-      {signUpStep === 'STEP2' && <SignUpStep2 onClick={handleClickSendPin} />}
+      {signUpStep === 'STEP2' && (
+        <SignUpStep2 onClickSendPin={handleClickSendPin} />
+      )}
     </ScrollBox>
   );
 };

@@ -17,7 +17,7 @@ const ScrollBox = (props: ScrollBoxPropsI) => {
     <Box
       component="section"
       sx={{
-        border: '1px solid green',
+        // border: '1px solid green',
         display: 'flex',
         flexDirection: 'column',
         gap: '20px',
