@@ -1,5 +1,4 @@
-import { Outlet } from 'react-router-dom';
-import { Container, Box } from '@mui/material';
+import { Container } from '@mui/material';
 // import { BottomNavigation, Header } from '@/components/entity';
 
 // interface MainTemplateProps {
@@ -7,8 +6,12 @@ import { Container, Box } from '@mui/material';
 //   // children: React.ReactNode;
 // }
 
-const StartTemplate = () => {
-  // const { header } = props;
+export type StartTemplatePropsT = {
+  children: React.ReactNode;
+};
+
+const StartTemplate = (props: StartTemplatePropsT) => {
+  const { children } = props;
   return (
     <Container
       sx={{
@@ -23,7 +26,7 @@ const StartTemplate = () => {
         // overflow: 'hidden',
       }}
     >
-      <Outlet />
+      {children}
     </Container>
   );
 };

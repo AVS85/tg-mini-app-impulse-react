@@ -71,17 +71,15 @@ export const App = () => (
       <BrowserRouter>
         <BackButtonManipulator />
         <Routes>
-          <Route element={<StartTemplate />}>
-            {/* <Route path="/login" element={<Start />} /> */}
-          </Route>
+          {/* <Route path="/login" element={<Start />} /> */}
 
           <Route element={<AuthProvider />}>
-            <Route index element={<Start />} />
             <Route element={<MainTemplate />}>
-              <Route
-                path={RouterPathEnum.ANALYZE_CONFLICT}
-                element={<Chat />}
-              />
+              {/* <Route element={<StartTemplate />}>
+              <Route index element={<Start />} />
+            </Route> */}
+
+              <Route index path="/" element={<Chat />} />
               <Route
                 path={RouterPathEnum.ANALYZE_CONFLICT}
                 element={<AnalyzeConflict />}

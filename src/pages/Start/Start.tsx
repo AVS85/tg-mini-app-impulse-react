@@ -5,17 +5,17 @@ import { Text } from '@/components/atoms';
 import { useNavigate } from 'react-router-dom';
 
 const StartPage = () => {
-  console.log('[AuthProvider] Redirect...');
+  // console.log('[AuthProvider] Redirect...');
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  useEffect(() => {
-    setTimeout(() => {
-      console.log('Redirect...');
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     console.log('Redirect...');
 
-      navigate('/login');
-    }, 5000);
-  }, []);
+  //     navigate('/login');
+  //   }, 5000);
+  // }, []);
 
   return (
     <>
