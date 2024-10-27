@@ -5,6 +5,7 @@ import { Text } from '@/components/atoms';
 import { useNavigate } from 'react-router-dom';
 import { useStores } from '@/store';
 import { AuthStepperEnum } from '@/store/auth';
+import backgroundImage from './startBackground.jpg';
 
 const StartPage = () => {
   const { authStore } = useStores();
@@ -21,18 +22,18 @@ const StartPage = () => {
     }, 0);
   };
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setPreloadPercent((num) => {
-        if (num >= 100) {
-          clearInterval(intervalId);
-          redirect();
-          return 100;
-        }
-        return num + 5;
-      });
-    }, 100);
-  }, []);
+  // useEffect(() => {
+  //   const intervalId = setInterval(() => {
+  //     setPreloadPercent((num) => {
+  //       if (num >= 100) {
+  //         clearInterval(intervalId);
+  //         redirect();
+  //         return 100;
+  //       }
+  //       return num + 5;
+  //     });
+  //   }, 100);
+  // }, []);
 
   return (
     <>
@@ -45,6 +46,11 @@ const StartPage = () => {
           justifyContent: 'center',
           flex: 1,
           width: '100%',
+          // backgroundImage: `url(${backgroundImage})`,
+          background: `linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), url(${backgroundImage})`,
+          // backgroundColor: 'transparent',
+          backgroundSize: 'cover', // или 'contain', в зависимости от ваших нужд
+          backgroundPosition: 'center',
         }}
       >
         <Box
@@ -67,9 +73,9 @@ const StartPage = () => {
               alignItems: 'center',
             }}
           >
-            <Box sx={{ marginBottom: '75px' }}>
+            {/* <Box sx={{ marginBottom: '75px' }}>
               <ButtonMainOutline width={'226px'} height={'226px'} />
-            </Box>
+            </Box> */}
             <Box sx={{ marginBottom: '32px' }}>
               <Aimpulse />
             </Box>
