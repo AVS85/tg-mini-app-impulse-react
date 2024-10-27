@@ -22,18 +22,18 @@ const StartPage = () => {
     }, 0);
   };
 
-  // useEffect(() => {
-  //   const intervalId = setInterval(() => {
-  //     setPreloadPercent((num) => {
-  //       if (num >= 100) {
-  //         clearInterval(intervalId);
-  //         redirect();
-  //         return 100;
-  //       }
-  //       return num + 5;
-  //     });
-  //   }, 100);
-  // }, []);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setPreloadPercent((num) => {
+        if (num >= 100) {
+          clearInterval(intervalId);
+          redirect();
+          return 100;
+        }
+        return num + 5;
+      });
+    }, 100);
+  }, []);
 
   return (
     <>
