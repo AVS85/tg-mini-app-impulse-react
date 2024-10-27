@@ -40,7 +40,7 @@ const InputPins: React.FC = () => {
         .required('Email is required')
         .max(100, 'Email must be at most 100 characters'),
     }),
-    onSubmit: (values, actions) => {
+    onSubmit: () => {
       // handleSubmit(values, actions);
       // TODO пофиксить повторные отпправки
       // authStore.setLogin(values.email);

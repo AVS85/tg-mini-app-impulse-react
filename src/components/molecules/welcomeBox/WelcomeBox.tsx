@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import WelcomeIcon from '@/components/icons/welcomeIcon';
-import { Button, ButtonIcon, ContentBox, Text } from '@/components/atoms';
+import { Text } from '@/components/atoms';
 
 interface WelcomeBoxI {
   title?: string;

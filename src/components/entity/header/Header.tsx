@@ -20,6 +20,7 @@ const Header = () => {
     [RouterPathEnum.ANALYZE_MESSAGES_CHAT]: 'Анализ сообщений в чате',
     [RouterPathEnum.DIARY_EMOTIONS]: 'Дневник эмоций',
     [RouterPathEnum.PROFILE]: 'Мой профиль',
+    [RouterPathEnum.SIGN_UP]: '',
     [RouterPathEnum.SUBSCRIPTION]: 'Оформить подписку',
   };
 

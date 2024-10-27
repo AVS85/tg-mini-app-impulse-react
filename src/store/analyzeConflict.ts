@@ -1,4 +1,4 @@
-import { makeAutoObservable, reaction } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 import type RootStore from '.';
 import api from '@/api/v1';
 
@@ -34,6 +34,7 @@ class AnalyzeConflictStore {
         userId: '',
         conflict: '',
       });
+      return response;
     } catch (error) {
     } finally {
     }

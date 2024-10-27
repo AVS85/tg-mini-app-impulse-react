@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { Box } from '@mui/material';
 import { RouterPathEnum } from '@/components/App';
 import { WelcomeBox } from '@/components/molecules';
-import { Button, Input, ScrollBox } from '@/components/atoms';
+import { Button, Input } from '@/components/atoms';
 
 // interface AnalyzeMessagesPropsI {
 //   onClick: () => void;
