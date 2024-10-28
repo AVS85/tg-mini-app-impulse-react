@@ -76,10 +76,23 @@ const Subscription = () => {
               slidesPerView={1}
               onSlideChange={() => console.log('slide change')}
               onSwiper={(swiper) => console.log(swiper)}
+              style={{
+                // display: 'flex',
+                // border: '1px solid red',
+                height: '100%',
+              }}
             >
               {cards.map((card) => {
                 return (
-                  <SwiperSlide>
+                  <SwiperSlide
+                    style={{
+                      display: 'flex',
+                      // alignItems: 'stretch',
+                      // border: '2px solid red',
+                      // flex: 1,
+                      // height: '100%',
+                    }}
+                  >
                     <Box
                       sx={{
                         // border: '1px solid red',
@@ -107,6 +120,7 @@ const Subscription = () => {
                           display: 'flex',
                           flexDirection: 'column',
                           gap: '40px',
+                          flex: 1,
                           padding: '55px 36px 0 33px',
                         }}
                       >
