@@ -3,10 +3,12 @@ import type RootStore from '.';
 import api from '@/api/v1';
 
 export enum AuthStepperEnum {
-  LOGOUT = 'user.logout',
-  LOGGED = 'user.logged',
-  FORBIDDEN = 'access.forbidden',
-  ERROR = 'request.error',
+  LOGOUT = 'user.logout', // не авторизован
+  PIN_REQUESTED = 'pin.requested', // пин запрошен пользователем
+  PIN_POST_EMAIL = 'pin.post.email', // пин отправлен на почту
+  PIN_POST = 'user.post.pin', // пользователь отправил пин на сервер
+  LOGGED = 'user.logged', // пользователь авторизован
+  FORBIDDEN = 'user.forbidden', // доступ запрещен
 }
 
 class AuthStore {
@@ -24,16 +26,17 @@ class AuthStore {
     // });
   }
 
-  // setAuthStatus = (status: AuthStepperEnum) => {
-  //   this.authStatus = status;
-  // };
+  setAuthStatus = (status: AuthStepperEnum) => {
+    this.authStatus = status;
+  };
 
   checkLogin = async (email: string) => {
     try {
-      await api.auth.check(email);
+      await api.auth.check({ email });
+      this.setAuthStatus(AuthStepperEnum.LOGGED);
     } catch (error) {
-      console.log('error', error);
-      throw '[checkLogin] error';
+      this.setAuthStatus(AuthStepperEnum.LOGGED); //TODO убрать когда авторизация заработает нормально
+      throw error;
     }
   };
 

@@ -1,33 +1,54 @@
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { observer } from 'mobx-react';
 import { RouterPathEnum } from '@/components/App';
 import { ScrollBox } from '@/components/atoms';
 import { useStores } from '@/store';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import SignUpStep1 from './SignUpStep1';
 import SignUpStep2 from './SignUpStep2';
+import { AuthStepperEnum } from '@/store/auth';
 
 const SignUpPage = () => {
+  const [isDisplayStep1, setIsDisplayStep1] = useState(false);
+  const [isDisplayStep2, setIsDisplayStep2] = useState(false);
+
   const navigate = useNavigate();
   const { authStore } = useStores();
-  const [signUpStep, setSignUpStep] = useState<'STEP1' | 'STEP2'>('STEP1');
+
+  const { authStatus } = authStore;
 
   const handleClickSendPersonData = async () => {
     /** отправка данных */
     /** если успех показываем ввод pin */
     await authStore.checkLogin('');
-    setSignUpStep('STEP2');
   };
 
   const handleClickSendPin = async () => {
     /** отправка pin */
     /** если успех делаем переход в чат */
-    navigate(RouterPathEnum.CHAT);
+    // navigate(RouterPathEnum.CHAT);
   };
 
-  const handleClickContinueWithoutRegistration = () => {
-    /** переход в чат без регистрации */
-    navigate(RouterPathEnum.CHAT);
-  };
+  // const handleClickContinueWithoutRegistration = () => {
+  //   /** переход в чат без регистрации */
+  //   navigate(RouterPathEnum.CHAT);
+  // };
+
+  useEffect(() => {
+    setIsDisplayStep1(
+      [AuthStepperEnum.LOGOUT, AuthStepperEnum.PIN_REQUESTED].includes(
+        authStatus
+      )
+    );
+    setIsDisplayStep2(
+      [
+        AuthStepperEnum.PIN_REQUESTED,
+        AuthStepperEnum.PIN_POST_EMAIL,
+        AuthStepperEnum.PIN_POST,
+      ].includes(authStatus)
+    );
+    if (authStatus === AuthStepperEnum.LOGGED) navigate(RouterPathEnum.CHAT);
+  }, [authStatus]);
 
   return (
     <ScrollBox
@@ -37,19 +58,17 @@ const SignUpPage = () => {
         justifyContent: 'center',
       }}
     >
-      {signUpStep === 'STEP1' && (
+      {isDisplayStep1 && (
         <SignUpStep1
           onClickSendPersonalData={handleClickSendPersonData}
-          onClickContinueWithoutRegistration={
-            handleClickContinueWithoutRegistration
-          }
+          // onClickContinueWithoutRegistration={
+          //   handleClickContinueWithoutRegistration
+          // }
         />
       )}
-      {signUpStep === 'STEP2' && (
-        <SignUpStep2 onClickSendPin={handleClickSendPin} />
-      )}
+      {isDisplayStep2 && <SignUpStep2 onClickSendPin={handleClickSendPin} />}
     </ScrollBox>
   );
 };
 
-export default SignUpPage;
+export default observer(SignUpPage);
