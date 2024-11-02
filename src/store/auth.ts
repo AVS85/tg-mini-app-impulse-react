@@ -47,7 +47,7 @@ class AuthStore {
 
   getClient = async () => {
     try {
-      const { data } = await api.auth.getClient({ email: '' });
+      const { data } = await api.auth.getClient({ email: 'seo@ya.ru' });
       runInAction(() => {
         this.client = data;
       });
