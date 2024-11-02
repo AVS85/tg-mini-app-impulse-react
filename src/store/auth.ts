@@ -1,6 +1,7 @@
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable, runInAction } from 'mobx';
 import type RootStore from '.';
 import api from '@/api/v1';
+import { GetClientResponseI } from '@/api/v1/auth';
 
 export enum AuthStepperEnum {
   LOGOUT = 'user.logout', // не авторизован
@@ -16,6 +17,8 @@ class AuthStore {
 
   // authStatus: AuthStepperEnum = AuthStepperEnum.LOGGED;
   authStatus: AuthStepperEnum = AuthStepperEnum.LOGOUT;
+
+  client: GetClientResponseI | null = null;
 
   constructor(rootStore: RootStore) {
     makeAutoObservable(this);
@@ -35,9 +38,20 @@ class AuthStore {
       await api.auth.check({ email });
       this.setAuthStatus(AuthStepperEnum.LOGGED);
     } catch (error) {
-      this.setAuthStatus(AuthStepperEnum.LOGGED); //TODO убрать когда авторизация заработает нормально
+      //TODO убрать когда авторизация заработает нормально
+      this.setAuthStatus(AuthStepperEnum.LOGGED);
+      this.getClient();
       throw error;
     }
+  };
+
+  getClient = async () => {
+    try {
+      const { data } = await api.auth.getClient({ email: '' });
+      runInAction(() => {
+        this.client = data;
+      });
+    } catch (error) {}
   };
 
   logout = () => {
