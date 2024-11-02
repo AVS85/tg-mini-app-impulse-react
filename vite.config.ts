@@ -21,6 +21,13 @@ export default defineConfig({
   server: {
     // Exposes your dev server and makes it accessible for the devices in the same network.
     host: true,
+    proxy: {
+      '/v1': {
+        target: 'https://aimpulsetest.loya.legal:3000', // URL вашего API
+        changeOrigin: true,
+        // rewrite: (path) => path.replace(/^/api/, ''), // Опционально: изменить путь запроса
+      },
+    },
   },
 });
 

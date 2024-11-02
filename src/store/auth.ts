@@ -1,5 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import type RootStore from '.';
+import api from '@/api/v1';
 
 export enum AuthStepperEnum {
   LOGOUT = 'user.logout',
@@ -11,8 +12,8 @@ export enum AuthStepperEnum {
 class AuthStore {
   rootStore: RootStore;
 
-  authStatus: AuthStepperEnum = AuthStepperEnum.LOGGED;
-  // authStatus: AuthStepperEnum = AuthStepperEnum.LOGOUT;
+  // authStatus: AuthStepperEnum = AuthStepperEnum.LOGGED;
+  authStatus: AuthStepperEnum = AuthStepperEnum.LOGOUT;
 
   constructor(rootStore: RootStore) {
     makeAutoObservable(this);
@@ -27,11 +28,19 @@ class AuthStore {
   //   this.authStatus = status;
   // };
 
-  // logout = () => {
-  //   this.authStatus = AuthStepperEnum.LOGOUT;
-  //   // this.rootStore.menuStore.setMenuItem(null);
-  //   localStorage.setItem("authStatus", "");
-  // };
+  checkLogin = async (email: string) => {
+    try {
+      await api.auth.check(email);
+    } catch (error) {
+      console.log('error', error);
+      throw '[checkLogin] error';
+    }
+  };
+
+  logout = () => {
+    this.authStatus = AuthStepperEnum.LOGOUT;
+    localStorage.setItem('authStatus', '');
+  };
 }
 
 export default AuthStore;

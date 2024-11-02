@@ -5,15 +5,16 @@ export type requestAuthCheckAccessT = {
   access: boolean;
 };
 
-const contract = {
-  checkAccess: (
-    email: string
-  ): Promise<AxiosResponse<requestAuthCheckAccessT>> => {
+const auth = {
+  check: (email: string): Promise<AxiosResponse<requestAuthCheckAccessT>> => {
     return axios({
-      url: `/v1/auth-b2b/check-access?email=${email}`,
-      method: 'get',
+      url: `v1/auth/check?email=${email}`,
+      method: 'post',
+      data: {
+        email,
+      },
     });
   },
 };
 
-export default contract;
+export default auth;
