@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/v1/:path*",
+      "destination": "https://aimpulsetest.loya.legal/v1/:path*"
+    },
+    {
+      "source": "/v1/:path*/",
+      "destination": "https://aimpulsetest.loya.legal/v1/:path*/"
+    }
+  ]
+}
