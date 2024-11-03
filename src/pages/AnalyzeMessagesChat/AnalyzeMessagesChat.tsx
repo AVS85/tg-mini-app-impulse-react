@@ -52,9 +52,9 @@ const AnalyzeMessagesChatPage = () => {
           {isChatHistoryExist &&
             chatHistory.map((el, index) => {
               return (
-                <Box sx={{ flex: 1 }} key={index}>
+                <Fragment key={index}>
                   <ChatMessageTextBox value={el.content} party={el.party} />
-                </Box>
+                </Fragment>
               );
             })}
         </Box>
