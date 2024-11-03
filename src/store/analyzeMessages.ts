@@ -13,6 +13,12 @@ class AnalyzeMessagesStore {
     },
   ];
 
+  isFetchingPostMessage = false;
+
+  setIsFetchingPostMessage = (value: boolean) => {
+    this.isFetchingPostMessage = value;
+  };
+
   constructor(rootStore: RootStore) {
     makeAutoObservable(this);
     this.rootStore = rootStore;
@@ -26,6 +32,7 @@ class AnalyzeMessagesStore {
    */
   postMessage = async (analyze_message: string) => {
     try {
+      this.setIsFetchingPostMessage(true);
       const clientId = this.rootStore.authStore.client?.id;
 
       if (clientId && analyze_message) {
@@ -47,6 +54,7 @@ class AnalyzeMessagesStore {
       }
     } catch (error) {
     } finally {
+      this.setIsFetchingPostMessage(false);
     }
   };
 }
