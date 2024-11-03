@@ -1,10 +1,11 @@
+import { PartyEnum } from '@/types/chat';
 import { Box } from '@mui/material';
 
 interface ChatMessageTextBoxPropsI {
   /** 'PARTY_A' - собственные сообщений
    *  'PARTY_B' - сообщения собеседника
    */
-  party: 'PARTY_A' | 'PARTY_B';
+  party: PartyEnum;
   value: string;
 }
 
@@ -39,7 +40,7 @@ const stylePartyB = {
 const ChatMessageTextBox = (props: ChatMessageTextBoxPropsI) => {
   const { value, party } = props;
 
-  const isPartyA = party === 'PARTY_A';
+  const isPartyA = party === PartyEnum.PARTY_A;
 
   const styleParty = isPartyA ? stylePartyA : stylePartyB;
 

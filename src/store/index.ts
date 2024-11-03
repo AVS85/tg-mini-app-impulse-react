@@ -4,14 +4,17 @@ import React from 'react';
 
 import Auth from './auth';
 import AnalyzeConflict from './analyzeConflict';
+import AnalyzeMessagesStore from './analyzeMessages';
 
 class RootStore {
   authStore: Auth;
   analyzeConflictStore: AnalyzeConflict;
+  analyzeMessagesStore: AnalyzeMessagesStore;
 
   constructor() {
     this.authStore = new Auth(this);
     this.analyzeConflictStore = new AnalyzeConflict(this);
+    this.analyzeMessagesStore = new AnalyzeMessagesStore(this);
   }
 }
 

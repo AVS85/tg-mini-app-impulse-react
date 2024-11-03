@@ -1,44 +1,62 @@
-// import { appUI } from '@/common/colors';
+import { Fragment, useEffect } from 'react';
+import { Box } from '@mui/material';
+import { useStores } from '@/store';
 import {
   Button,
-  // ButtonIcon,
   ChatMessageTextBox,
-  // ContentBox,
   Input,
   ScrollBox,
-  // Text,
 } from '@/components/atoms';
-// import { Basket, Save } from '@/components/icons';
-// import { WelcomeBox } from '@/components/molecules';
-import { Box } from '@mui/material';
-import { Fragment } from 'react';
 
 import { mockChat } from './mockChat';
+import { observer } from 'mobx-react';
+import { PartyEnum } from '@/types/chat';
 
 const AnalyzeMessagesChatPage = () => {
-  // const [isDisplayWelcomeLayer, setIsDisplayWelcomeLayer] = useState(true);
+  const { analyzeMessagesStore } = useStores();
+  const { chatHistory } = analyzeMessagesStore;
+  const handlePostMessage = async () => {
+    analyzeMessagesStore.postMessage('Что делать');
+  };
 
-  // const handleClickStart = () => setIsDisplayWelcomeLayer((bool) => !bool);
-  // const handleCreateConflict = () => {};
+  // useEffect(() => {
+  //   analyzeMessagesStore.addItemChatHistory({
+  //     party: PartyEnum.PARTY_B,
+  //     content: 'Привет Олег!',
+  //   });
+  // }, []);
+
+  const isChatHistoryExist = Array.isArray(chatHistory) && chatHistory.length;
+
   return (
     <Box
       sx={{
+        // border: '1px solid red',
         display: 'flex',
         flexDirection: 'column',
         gap: '50px',
+        flex: 1,
       }}
     >
       {/* CHAT */}
       <ScrollBox>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-          {mockChat.map((el, index) => {
-            return (
-              <Fragment key={index}>
-                <ChatMessageTextBox value={el.partyB} party="PARTY_B" />
-                <ChatMessageTextBox value={el.partyA} party="PARTY_A" />
-              </Fragment>
-            );
-          })}
+        <Box
+          sx={{
+            // border: '1px solid red',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '20px',
+            width: '100%',
+          }}
+        >
+          {isChatHistoryExist &&
+            chatHistory.map((el, index) => {
+              return (
+                <Box sx={{ flex: 1 }} key={index}>
+                  <ChatMessageTextBox value={el.content} party={el.party} />
+                </Box>
+              );
+            })}
         </Box>
       </ScrollBox>
 
@@ -60,6 +78,7 @@ const AnalyzeMessagesChatPage = () => {
             // sxProps={{ backgroundColor: appUI.colors.mainBlue }}
             backgroundType="filled"
             title="Анализ"
+            onClick={handlePostMessage}
           />
           {/* <ButtonIcon Icon={Basket} />
           <ButtonIcon Icon={Save} /> */}
@@ -69,4 +88,4 @@ const AnalyzeMessagesChatPage = () => {
   );
 };
 
-export default AnalyzeMessagesChatPage;
+export default observer(AnalyzeMessagesChatPage);
