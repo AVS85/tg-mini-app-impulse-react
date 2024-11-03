@@ -8,6 +8,7 @@ import { Box } from '@mui/material';
 
 import { mockChat } from './mockChat';
 import { Fragment } from 'react/jsx-runtime';
+import { PartyEnum } from '@/types/chat';
 
 const Chat = () => {
   return (
@@ -23,8 +24,8 @@ const Chat = () => {
         {mockChat.map((el, index) => {
           return (
             <Fragment key={index}>
-              <ChatMessageTextBox value={el.partyB} party="PARTY_B" />
-              <ChatMessageTextBox value={el.partyA} party="PARTY_A" />
+              <ChatMessageTextBox value={el.partyB} party={PartyEnum.PARTY_B} />
+              <ChatMessageTextBox value={el.partyA} party={PartyEnum.PARTY_A} />
             </Fragment>
           );
         })}

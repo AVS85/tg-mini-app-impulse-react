@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from 'react';
+import { Fragment } from 'react';
 import { Box } from '@mui/material';
 import { useStores } from '@/store';
 import {
@@ -8,9 +8,9 @@ import {
   ScrollBox,
 } from '@/components/atoms';
 
-import { mockChat } from './mockChat';
+// import { mockChat } from './mockChat';
 import { observer } from 'mobx-react';
-import { PartyEnum } from '@/types/chat';
+// import { PartyEnum } from '@/types/chat';
 
 const AnalyzeMessagesChatPage = () => {
   const { analyzeMessagesStore } = useStores();

@@ -14,6 +14,7 @@ import { Box } from '@mui/material';
 import { Fragment } from 'react';
 
 import { mockChat } from './mockChat';
+import { PartyEnum } from '@/types/chat';
 
 // interface WelcomeLayerPropsI {
 //   onClick: () => void;
@@ -141,8 +142,16 @@ const AnalyzeConflictChatPage = () => {
           {mockChat.map((el, index) => {
             return (
               <Fragment key={index}>
-                <ChatMessageTextBox value={el.partyB} party="PARTY_B" />
-                <ChatMessageTextBox value={el.partyA} party="PARTY_A" />
+                <ChatMessageTextBox
+                  value={el.partyB}
+                  party={PartyEnum.PARTY_B}
+                />
+                <ChatMessageTextBox
+                  value={el.partyA}
+                  party={PartyEnum.PARTY_B}
+                />
+                {/* <ChatMessageTextBox value={el.partyB} party="PARTY_B" />
+                <ChatMessageTextBox value={el.partyA} party="PARTY_A" /> */}
               </Fragment>
             );
           })}
