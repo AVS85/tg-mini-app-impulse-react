@@ -15,18 +15,18 @@ export enum AuthStepperEnum {
 class AuthStore {
   rootStore: RootStore;
 
-  authStatus: AuthStepperEnum = AuthStepperEnum.LOGGED;
-  // authStatus: AuthStepperEnum = AuthStepperEnum.LOGOUT;
+  // authStatus: AuthStepperEnum = AuthStepperEnum.LOGGED;
+  authStatus: AuthStepperEnum = AuthStepperEnum.LOGOUT;
 
-  // client: GetClientResponseI | null = null;
-  client: GetClientResponseI | null = {
-    email: 'seo@ya.ru',
-    full_name: null,
-    id: '088f3535-6f8c-4b71-ae9f-e162ceb2ec98',
-    phone_number: null,
-    telegram_id: null,
-    user_name: null,
-  };
+  client: GetClientResponseI | null = null;
+  // client: GetClientResponseI | null = {
+  //   email: 'seo@ya.ru',
+  //   full_name: null,
+  //   id: '088f3535-6f8c-4b71-ae9f-e162ceb2ec98',
+  //   phone_number: null,
+  //   telegram_id: null,
+  //   user_name: null,
+  // };
 
   constructor(rootStore: RootStore) {
     makeAutoObservable(this);
@@ -43,12 +43,14 @@ class AuthStore {
 
   checkLogin = async (email: string) => {
     try {
-      await api.auth.check({ email });
+      const response = await api.auth.check({ email });
+      console.log('response', response);
+
       this.setAuthStatus(AuthStepperEnum.LOGGED);
     } catch (error) {
       //TODO убрать когда авторизация заработает нормально
-      this.setAuthStatus(AuthStepperEnum.LOGGED);
-      this.getClient();
+      // this.setAuthStatus(AuthStepperEnum.LOGGED);
+      // this.getClient();
       throw error;
     }
   };

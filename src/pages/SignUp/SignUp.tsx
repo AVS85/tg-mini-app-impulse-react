@@ -7,6 +7,12 @@ import { useStores } from '@/store';
 import SignUpStep1 from './SignUpStep1';
 import SignUpStep2 from './SignUpStep2';
 import { AuthStepperEnum } from '@/store/auth';
+import { FormikProvider, useFormik } from 'formik';
+import * as Yup from 'yup';
+
+interface FormikValuesI {
+  email: string;
+}
 
 const SignUpPage = () => {
   const [isDisplayStep1, setIsDisplayStep1] = useState(false);
@@ -17,10 +23,31 @@ const SignUpPage = () => {
 
   const { authStatus } = authStore;
 
+  const formikSubmit = async (values: FormikValuesI) => {
+    await authStore.checkLogin(values.email);
+  };
+
+  const formik = useFormik<FormikValuesI>({
+    initialValues: {
+      email: '',
+    },
+    validateOnChange: true,
+    validateOnMount: true,
+    validationSchema: Yup.object().shape({
+      email: Yup.string()
+        .matches(
+          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/,
+          'Неверный формат email'
+        )
+        .required('Email обязателен'),
+    }),
+    onSubmit: (values) => formikSubmit(values),
+  });
+
   const handleClickSendPersonData = async () => {
     /** отправка данных */
     /** если успех показываем ввод pin */
-    await authStore.checkLogin('');
+    formik.submitForm();
   };
 
   const handleClickSendPin = async () => {
@@ -33,6 +60,10 @@ const SignUpPage = () => {
   //   /** переход в чат без регистрации */
   //   navigate(RouterPathEnum.CHAT);
   // };
+
+  // useEffect(() => {
+  //   console.log({ isValid: formik.isValid, email: formik.values.email });
+  // }, [formik.values]);
 
   useEffect(() => {
     setIsDisplayStep1(
@@ -51,23 +82,25 @@ const SignUpPage = () => {
   }, [authStatus]);
 
   return (
-    <ScrollBox
-      sxProps={{
-        // border: '1px solid red',
-        paddingY: '20px',
-        justifyContent: 'center',
-      }}
-    >
-      {isDisplayStep1 && (
-        <SignUpStep1
-          onClickSendPersonalData={handleClickSendPersonData}
-          // onClickContinueWithoutRegistration={
-          //   handleClickContinueWithoutRegistration
-          // }
-        />
-      )}
-      {isDisplayStep2 && <SignUpStep2 onClickSendPin={handleClickSendPin} />}
-    </ScrollBox>
+    <FormikProvider value={formik}>
+      <ScrollBox
+        sxProps={{
+          // border: '1px solid red',
+          paddingY: '20px',
+          justifyContent: 'center',
+        }}
+      >
+        {isDisplayStep1 && (
+          <SignUpStep1
+            onClickSendPersonalData={handleClickSendPersonData}
+            // onClickContinueWithoutRegistration={
+            //   handleClickContinueWithoutRegistration
+            // }
+          />
+        )}
+        {isDisplayStep2 && <SignUpStep2 onClickSendPin={handleClickSendPin} />}
+      </ScrollBox>
+    </FormikProvider>
   );
 };
 

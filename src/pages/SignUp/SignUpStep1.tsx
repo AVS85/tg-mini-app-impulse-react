@@ -1,6 +1,8 @@
+import { FormikProvider, useFormikContext } from 'formik';
 import { Button, Input } from '@/components/atoms';
 import { WelcomeBox } from '@/components/molecules';
 import { Box } from '@mui/material';
+import { useEffect } from 'react';
 
 interface SignUpStep1PropsI {
   onClickSendPersonalData: () => void;
@@ -8,47 +10,59 @@ interface SignUpStep1PropsI {
 }
 
 const SignUpStep1 = (props: SignUpStep1PropsI) => {
+  const formikContext = useFormikContext();
   const {
     onClickSendPersonalData,
     // onClickContinueWithoutRegistration
   } = props;
 
+  const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { target } = event;
+
+    formikContext.setFieldValue('email', target.value);
+  };
+
+  // useEffect(() => {
+  //   console.log(formikContext);
+  // }, [formikContext]);
   return (
-    <Box
-      sx={{
-        // border: '1px solid red',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: '40px',
-        overflow: 'auto',
-        width: '100%',
-      }}
-    >
-      <WelcomeBox
-        title="Добро пожаловать"
-        subtitle="Зарегистрируйтесь, чтобы начать полноценное общение с импульсом"
-      />
+    <FormikProvider value={formikContext}>
       <Box
         sx={{
-          width: '100%',
+          // border: '1px solid red',
           display: 'flex',
           flexDirection: 'column',
-          gap: '20px',
-          maxWidth: '340px',
+          alignItems: 'center',
+          gap: '40px',
+          overflow: 'auto',
+          width: '100%',
         }}
       >
-        <Input placeholder="Электронная почта" />
-        {/* <Input placeholder="Имя" />
+        <WelcomeBox
+          title="Добро пожаловать"
+          subtitle="Зарегистрируйтесь, чтобы начать полноценное общение с импульсом"
+        />
+        <Box
+          sx={{
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '20px',
+            maxWidth: '340px',
+          }}
+        >
+          <Input placeholder="Электронная почта" onChange={handleChangeEmail} />
+          {/* <Input placeholder="Имя" />
         <Input placeholder="Фамилия" />
         <Input placeholder="Дата рождения дд/мм/гг" /> */}
-      </Box>
-      <Button
-        title="Зарегистрироваться"
-        backgroundType="filled"
-        onClick={onClickSendPersonalData}
-      />
-      {/* <Box
+        </Box>
+        <Button
+          title="Зарегистрироваться"
+          backgroundType="filled"
+          onClick={onClickSendPersonalData}
+          disabled={!formikContext.isValid}
+        />
+        {/* <Box
         sx={{
           display: 'flex',
           flexDirection: 'column',
@@ -67,7 +81,8 @@ const SignUpStep1 = (props: SignUpStep1PropsI) => {
           Большая часть функций будет ограничена
         </Text.subtitle>
       </Box> */}
-    </Box>
+      </Box>
+    </FormikProvider>
   );
 };
 

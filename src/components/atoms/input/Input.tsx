@@ -6,10 +6,18 @@ interface InputPropsI {
   placeholder?: string;
   variant?: 'outlined';
   fullWidth?: boolean;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input = (props: InputPropsI) => {
-  const { id, label, fullWidth, variant = 'outlined', placeholder } = props;
+  const {
+    id,
+    label,
+    fullWidth,
+    variant = 'outlined',
+    placeholder,
+    onChange,
+  } = props;
   return (
     <TextField
       id={id}
@@ -17,6 +25,7 @@ const Input = (props: InputPropsI) => {
       label={label}
       placeholder={placeholder}
       variant={variant}
+      onChange={onChange}
     />
   );
 };

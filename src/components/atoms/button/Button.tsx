@@ -2,6 +2,7 @@ import { Button as ButtonMUI, SvgIconProps, SxProps } from '@mui/material';
 import { Text } from '@/components/atoms';
 
 interface ButtonPropsI {
+  disabled?: boolean;
   icon?: React.FC<SvgIconProps>;
   type?: 'round' | 'square';
   backgroundType?: 'transparent' | 'filled';
@@ -20,6 +21,7 @@ const Button = (props: ButtonPropsI) => {
     onClick,
     variant,
     sxProps,
+    disabled,
   } = props;
 
   const backgroundColor = (() => {
@@ -40,6 +42,7 @@ const Button = (props: ButtonPropsI) => {
 
   return (
     <ButtonMUI
+      disabled={disabled}
       variant={variant}
       color="primary"
       onClick={onClick}
@@ -53,11 +56,11 @@ const Button = (props: ButtonPropsI) => {
         alignItems: 'center',
 
         backgroundColor: backgroundColor,
-        // '&:hover': {
-        //   backgroundColor: backgroundColor,
-        // },
         boxShadow: '4px 4px 14.9px -6px #A8B7D5, -3px -3px 5.3px 0px #FFFFFF',
         width: 'auto',
+        '&:disabled': {
+          opacity: '50%',
+        },
         ...sxProps,
       }}
     >

@@ -67,9 +67,10 @@ const check = (
   const { email } = payload;
   return axios({
     method: 'post',
-    url: `v1/auth/check?email=${email}`,
+    // url: `v1/auth/check?email=${email}`,
+    url: `v1/auth/check`,
     data: {
-      email,
+      email: 'seoya.ru1',
     },
   });
 };
