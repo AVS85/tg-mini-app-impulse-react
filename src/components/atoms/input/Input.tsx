@@ -4,6 +4,7 @@ interface InputPropsI {
   id?: string;
   label?: string;
   placeholder?: string;
+  defaultValue?: string;
   variant?: 'outlined';
   fullWidth?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -14,6 +15,7 @@ const Input = (props: InputPropsI) => {
     id,
     label,
     fullWidth,
+    defaultValue,
     variant = 'outlined',
     placeholder,
     onChange,
@@ -26,6 +28,7 @@ const Input = (props: InputPropsI) => {
       placeholder={placeholder}
       variant={variant}
       onChange={onChange}
+      defaultValue={defaultValue}
     />
   );
 };

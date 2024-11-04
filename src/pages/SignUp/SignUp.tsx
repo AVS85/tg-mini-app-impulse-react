@@ -10,7 +10,7 @@ import { AuthStepperEnum } from '@/store/auth';
 import { FormikProvider, useFormik } from 'formik';
 import * as Yup from 'yup';
 
-interface FormikValuesI {
+export interface FormikValuesSignUpPageI {
   email: string;
 }
 
@@ -23,13 +23,14 @@ const SignUpPage = () => {
 
   const { authStatus } = authStore;
 
-  const formikSubmit = async (values: FormikValuesI) => {
-    await authStore.checkLogin(values.email);
+  const formikSubmit = async (values: FormikValuesSignUpPageI) => {
+    // authStore.login();
+    await authStore.entrancePath(values.email);
   };
 
-  const formik = useFormik<FormikValuesI>({
+  const formik = useFormik<FormikValuesSignUpPageI>({
     initialValues: {
-      email: '',
+      email: 'seo.resait@ya.ru',
     },
     validateOnChange: true,
     validateOnMount: true,

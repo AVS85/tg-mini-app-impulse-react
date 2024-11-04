@@ -3,6 +3,7 @@ import { Button, Input } from '@/components/atoms';
 import { WelcomeBox } from '@/components/molecules';
 import { Box } from '@mui/material';
 import { useEffect } from 'react';
+import { FormikValuesSignUpPageI } from './SignUp';
 
 interface SignUpStep1PropsI {
   onClickSendPersonalData: () => void;
@@ -10,7 +11,7 @@ interface SignUpStep1PropsI {
 }
 
 const SignUpStep1 = (props: SignUpStep1PropsI) => {
-  const formikContext = useFormikContext();
+  const formikContext = useFormikContext<FormikValuesSignUpPageI>();
   const {
     onClickSendPersonalData,
     // onClickContinueWithoutRegistration
@@ -51,7 +52,11 @@ const SignUpStep1 = (props: SignUpStep1PropsI) => {
             maxWidth: '340px',
           }}
         >
-          <Input placeholder="Электронная почта" onChange={handleChangeEmail} />
+          <Input
+            placeholder="Электронная почта"
+            onChange={handleChangeEmail}
+            defaultValue={formikContext.values.email}
+          />
           {/* <Input placeholder="Имя" />
         <Input placeholder="Фамилия" />
         <Input placeholder="Дата рождения дд/мм/гг" /> */}

@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction } from 'mobx';
 import type RootStore from '.';
 import api from '@/api/v1';
-import { GetClientResponseI } from '@/api/v1/auth';
+import { GetClientResponseI } from '@/types/api';
 
 export enum AuthStepperEnum {
   LOGOUT = 'user.logout', // не авторизован
@@ -41,32 +41,89 @@ class AuthStore {
     this.authStatus = status;
   };
 
-  checkLogin = async (email: string) => {
-    try {
-      const response = await api.auth.check({ email });
-      console.log('response', response);
+  entrancePath = async (email: string) => {
+    /**
+     * 1. отправляем почту клиента
+     * 2. получаем данные созданного клиента
+     * 3. отправляем clientId в auth (как это работает?)
+     * 4. получаем состояние авторизации :))
+     */
 
-      this.setAuthStatus(AuthStepperEnum.LOGGED);
+    try {
+      console.log('entrancePath [1]...');
+
+      const response1 = await this.clientSave(email);
+      console.log('entrancePath [1] response:', response1);
+
+      console.log('entrancePath [2]...');
+      const response2 = await this.clientGet(email);
+      console.log('entrancePath [2] response:', response2);
+
+      console.log('entrancePath [3]...', {
+        client: this.client,
+      });
+      const clientId = this.client?.id;
+      if (clientId) {
+        const response3 = await this.authAdd(clientId);
+        console.log('entrancePath [3] response:', response3);
+
+        console.log('entrancePath [4]...');
+        const response4 = await this.authCheck(email);
+        console.log('entrancePath [4] response:', response4);
+      }
     } catch (error) {
-      //TODO убрать когда авторизация заработает нормально
-      // this.setAuthStatus(AuthStepperEnum.LOGGED);
-      // this.getClient();
-      throw error;
+      //
     }
   };
 
-  getClient = async () => {
+  clientSave = async (email: string) => {
     try {
-      const { data } = await api.auth.getClient({ email: 'seo@ya.ru' });
+      await api.auth.clientSave({ email });
+    } catch (error) {
+      throw `[saveClient]: ${error}`;
+    }
+  };
+
+  clientGet = async (email: string) => {
+    try {
+      const { data } = await api.auth.clientGet({ email });
       runInAction(() => {
         this.client = data;
       });
-    } catch (error) {}
+    } catch (error) {
+      throw `[clientGet]: ${error}`;
+    }
+  };
+
+  authAdd = async (clientId: string) => {
+    try {
+      await api.auth.authAdd({ clientId });
+    } catch (error) {
+      throw `[authAdd]: ${error}`;
+    }
+  };
+
+  authCheck = async (email: string) => {
+    try {
+      await api.auth.authCheck({ email });
+    } catch (error) {
+      throw `[authCheck]: ${error}`;
+    }
+  };
+
+  login = () => {
+    this.authStatus = AuthStepperEnum.LOGGED;
+    localStorage.setItem('authStatus', AuthStepperEnum.LOGGED);
   };
 
   logout = () => {
     this.authStatus = AuthStepperEnum.LOGOUT;
     localStorage.setItem('authStatus', '');
+  };
+
+  cleanup = () => {
+    this.authStatus = AuthStepperEnum.LOGOUT;
+    this.client = null;
   };
 }
 
