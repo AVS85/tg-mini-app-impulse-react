@@ -1,9 +1,10 @@
 import { FormikProvider, useFormikContext } from 'formik';
+import { Box } from '@mui/material';
+import { useStores } from '@/store';
 import { Button, Input } from '@/components/atoms';
 import { WelcomeBox } from '@/components/molecules';
-import { Box } from '@mui/material';
-import { useEffect } from 'react';
 import { FormikValuesSignUpPageI } from './SignUp';
+import { observer } from 'mobx-react';
 
 interface SignUpStep1PropsI {
   onClickSendPersonalData: () => void;
@@ -11,6 +12,9 @@ interface SignUpStep1PropsI {
 }
 
 const SignUpStep1 = (props: SignUpStep1PropsI) => {
+  const { authStore } = useStores();
+  const { inProgressEntrancePath } = authStore;
+
   const formikContext = useFormikContext<FormikValuesSignUpPageI>();
   const {
     onClickSendPersonalData,
@@ -19,13 +23,10 @@ const SignUpStep1 = (props: SignUpStep1PropsI) => {
 
   const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = event;
-
     formikContext.setFieldValue('email', target.value);
   };
+  const disabledButton = !formikContext.isValid || inProgressEntrancePath;
 
-  // useEffect(() => {
-  //   console.log(formikContext);
-  // }, [formikContext]);
   return (
     <FormikProvider value={formikContext}>
       <Box
@@ -65,7 +66,7 @@ const SignUpStep1 = (props: SignUpStep1PropsI) => {
           title="Зарегистрироваться"
           backgroundType="filled"
           onClick={onClickSendPersonalData}
-          disabled={!formikContext.isValid}
+          disabled={disabledButton}
         />
         {/* <Box
         sx={{
@@ -91,4 +92,4 @@ const SignUpStep1 = (props: SignUpStep1PropsI) => {
   );
 };
 
-export default SignUpStep1;
+export default observer(SignUpStep1);

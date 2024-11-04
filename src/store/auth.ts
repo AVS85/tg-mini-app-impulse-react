@@ -28,6 +28,11 @@ class AuthStore {
   //   user_name: null,
   // };
 
+  inProgressEntrancePath = false;
+  setInProgressEntrancePath = (value: boolean) => {
+    this.inProgressEntrancePath = value;
+  };
+
   constructor(rootStore: RootStore) {
     makeAutoObservable(this);
     this.rootStore = rootStore;
@@ -50,6 +55,7 @@ class AuthStore {
      */
 
     try {
+      this.setInProgressEntrancePath(true);
       console.log('entrancePath [1]...');
 
       const response1 = await this.clientSave(email);
@@ -73,6 +79,10 @@ class AuthStore {
       }
     } catch (error) {
       //
+    } finally {
+      console.log('final');
+
+      this.setInProgressEntrancePath(false);
     }
   };
 
