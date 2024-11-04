@@ -18,15 +18,15 @@ class AuthStore {
   // authStatus: AuthStepperEnum = AuthStepperEnum.LOGGED;
   authStatus: AuthStepperEnum = AuthStepperEnum.LOGOUT;
 
-  // client: GetClientResponseI | null = null;
-  client: GetClientResponseI | null = {
-    email: 'seo@ya.ru',
-    full_name: null,
-    id: '088f3535-6f8c-4b71-ae9f-e162ceb2ec98',
-    phone_number: null,
-    telegram_id: null,
-    user_name: null,
-  };
+  client: GetClientResponseI | null = null;
+  // client: GetClientResponseI | null = {
+  //   email: 'seo@ya.ru',
+  //   full_name: null,
+  //   id: '088f3535-6f8c-4b71-ae9f-e162ceb2ec98',
+  //   phone_number: null,
+  //   telegram_id: null,
+  //   user_name: null,
+  // };
 
   inProgressEntrancePath = false;
   setInProgressEntrancePath = (value: boolean) => {
@@ -76,6 +76,9 @@ class AuthStore {
         console.log('entrancePath [4]...');
         const response4 = await this.authCheck(email);
         console.log('entrancePath [4] response:', response4);
+        if (response4?.data?.isAccess === true) {
+          this.login();
+        }
       }
     } catch (error) {
       //
@@ -114,7 +117,7 @@ class AuthStore {
 
   authCheck = async (email: string) => {
     try {
-      await api.auth.authCheck({ email });
+      return await api.auth.authCheck({ email });
     } catch (error) {
       throw `[authCheck]: ${error}`;
     }

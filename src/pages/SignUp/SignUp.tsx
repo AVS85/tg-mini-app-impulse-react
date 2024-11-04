@@ -24,8 +24,8 @@ const SignUpPage = () => {
   const { authStatus } = authStore;
 
   const formikSubmit = async (values: FormikValuesSignUpPageI) => {
-    authStore.login();
-    // await authStore.entrancePath(values.email);
+    // authStore.login();
+    await authStore.entrancePath(values.email);
   };
 
   const formik = useFormik<FormikValuesSignUpPageI>({

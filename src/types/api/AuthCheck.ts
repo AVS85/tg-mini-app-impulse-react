@@ -1,4 +1,6 @@
 export interface CheckAccessPayloadI {
   email: string;
 }
-export interface CheckAccessResponseI {}
+export interface CheckAccessResponseI {
+  isAccess: boolean;
+}
