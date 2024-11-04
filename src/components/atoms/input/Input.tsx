@@ -9,6 +9,7 @@ interface InputPropsI {
   fullWidth?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
+  multiline?: boolean;
 }
 
 const Input = (props: InputPropsI) => {
@@ -21,6 +22,7 @@ const Input = (props: InputPropsI) => {
     variant = 'outlined',
     placeholder,
     onChange,
+    multiline,
   } = props;
   return (
     <TextField
@@ -32,6 +34,7 @@ const Input = (props: InputPropsI) => {
       onChange={onChange}
       defaultValue={defaultValue}
       disabled={disabled}
+      multiline={multiline}
     />
   );
 };

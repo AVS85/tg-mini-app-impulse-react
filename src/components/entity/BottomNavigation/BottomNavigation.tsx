@@ -82,7 +82,7 @@ const BottomNavigation = () => {
 
             boxShadow: `-1px -1px 3.5px 0px ${appUI.colors.accent[200]} inset, -3px -3px 10.5px 0px #FFFFFFB2, 0px 4px 4px 0px #00000040`,
           }}
-          onClick={() => handleTabChange(2, RouterPathEnum.INDEX)}
+          onClick={() => handleTabChange(2, RouterPathEnum.CHAT)}
         />
       </Box>
       <Box>
