@@ -18,15 +18,15 @@ class AuthStore {
   // authStatus: AuthStepperEnum = AuthStepperEnum.LOGGED;
   authStatus: AuthStepperEnum = AuthStepperEnum.LOGOUT;
 
-  client: GetClientResponseI | null = null;
-  // client: GetClientResponseI | null = {
-  //   email: 'seo@ya.ru',
-  //   full_name: null,
-  //   id: '088f3535-6f8c-4b71-ae9f-e162ceb2ec98',
-  //   phone_number: null,
-  //   telegram_id: null,
-  //   user_name: null,
-  // };
+  // client: GetClientResponseI | null = null;
+  client: GetClientResponseI | null = {
+    email: 'seo@ya.ru',
+    full_name: null,
+    id: '088f3535-6f8c-4b71-ae9f-e162ceb2ec98',
+    phone_number: null,
+    telegram_id: null,
+    user_name: null,
+  };
 
   inProgressEntrancePath = false;
   setInProgressEntrancePath = (value: boolean) => {
@@ -79,9 +79,8 @@ class AuthStore {
       }
     } catch (error) {
       //
+      this.cleanup();
     } finally {
-      console.log('final');
-
       this.setInProgressEntrancePath(false);
     }
   };

@@ -3,56 +3,82 @@ import { Box } from '@mui/material';
 import { RouterPathEnum } from '@/components/App';
 import { WelcomeBox } from '@/components/molecules';
 import { Button, Input } from '@/components/atoms';
+import { FormikProvider, useFormik } from 'formik';
+import * as Yup from 'yup';
+import { useStores } from '@/store';
 
-// interface AnalyzeMessagesPropsI {
-//   onClick: () => void;
-// }
+interface FormikValuesAnalyzeMessagesPageI {
+  text: string;
+}
 
 const AnalyzeMessagesPage = () => {
+  const { analyzeMessagesStore } = useStores();
   const navigate = useNavigate();
 
-  const handleClickStart = () => {
+  const formikSubmit = async (values: FormikValuesAnalyzeMessagesPageI) => {
+    await analyzeMessagesStore.postMessage(values.text);
     navigate(RouterPathEnum.ANALYZE_MESSAGES_CHAT);
   };
 
-  return (
-    <Box
-      sx={{
-        // border: '1px solid red',
+  const formik = useFormik<FormikValuesAnalyzeMessagesPageI>({
+    initialValues: {
+      text: '',
+    },
+    validateOnChange: true,
+    validateOnMount: true,
+    validationSchema: Yup.object().shape({
+      text: Yup.string().required('Обязательное поле'),
+    }),
+    onSubmit: (values) => formikSubmit(values),
+  });
 
-        display: 'flex',
-        flexDirection: 'column',
-        // alignItems: 'center',
-        justifyContent: 'center',
-        gap: '80px',
-        overflow: 'auto',
-        // width: '100%',
-        flex: 1,
-      }}
-    >
-      <WelcomeBox />
+  const isSubmitButtonDisabled =
+    !formik.isValid || analyzeMessagesStore.isFetchingPostMessage;
+
+  const handleChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { target } = event;
+    formik.setFieldValue('text', target.value);
+  };
+
+  return (
+    <FormikProvider value={formik}>
       <Box
         sx={{
-          // border: '1px solid red',
           display: 'flex',
           flexDirection: 'column',
-          gap: '20px',
-          width: '100%',
-          // paddingX: '20px',
-          boxSizing: 'content-box',
-          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '80px',
+          overflow: 'auto',
+          flex: 1,
         }}
       >
-        <Input fullWidth />
-        <Box>
-          <Button
-            title="Анализ"
-            backgroundType="filled"
-            onClick={handleClickStart}
+        <WelcomeBox />
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '20px',
+            width: '100%',
+            boxSizing: 'content-box',
+            alignItems: 'center',
+          }}
+        >
+          <Input
+            fullWidth
+            onChange={handleChangeText}
+            defaultValue={formik.values.text}
           />
+          <Box>
+            <Button
+              title="Анализ"
+              backgroundType="filled"
+              disabled={isSubmitButtonDisabled}
+              onClick={formik.submitForm}
+            />
+          </Box>
         </Box>
       </Box>
-    </Box>
+    </FormikProvider>
   );
 };
 

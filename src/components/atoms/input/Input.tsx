@@ -8,10 +8,12 @@ interface InputPropsI {
   variant?: 'outlined';
   fullWidth?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  disabled?: boolean;
 }
 
 const Input = (props: InputPropsI) => {
   const {
+    disabled,
     id,
     label,
     fullWidth,
@@ -29,6 +31,7 @@ const Input = (props: InputPropsI) => {
       variant={variant}
       onChange={onChange}
       defaultValue={defaultValue}
+      disabled={disabled}
     />
   );
 };

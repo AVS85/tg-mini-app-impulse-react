@@ -1,32 +1,52 @@
 import { Fragment } from 'react';
 import { Box } from '@mui/material';
 import { useStores } from '@/store';
+import { observer } from 'mobx-react';
 import {
   Button,
   ChatMessageTextBox,
   Input,
   ScrollBox,
 } from '@/components/atoms';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
-// import { mockChat } from './mockChat';
-import { observer } from 'mobx-react';
-// import { PartyEnum } from '@/types/chat';
-
+interface FormikValuesAnalyzeMessagesPageI {
+  text: string;
+}
 const AnalyzeMessagesChatPage = () => {
   const { analyzeMessagesStore } = useStores();
   const { chatHistory } = analyzeMessagesStore;
-  const handlePostMessage = async () => {
-    analyzeMessagesStore.postMessage('Что делать');
+
+  const formikSubmit = async (values: FormikValuesAnalyzeMessagesPageI) => {
+    await analyzeMessagesStore.postMessage(values.text);
   };
 
-  // useEffect(() => {
-  //   analyzeMessagesStore.addItemChatHistory({
-  //     party: PartyEnum.PARTY_B,
-  //     content: 'Привет Олег!',
-  //   });
-  // }, []);
+  const formik = useFormik<FormikValuesAnalyzeMessagesPageI>({
+    initialValues: {
+      text: '',
+    },
+    validateOnChange: true,
+    validateOnMount: true,
+    validationSchema: Yup.object().shape({
+      text: Yup.string().required('Обязательное поле'),
+    }),
+    onSubmit: (values) => formikSubmit(values),
+  });
 
   const isChatHistoryExist = Array.isArray(chatHistory) && chatHistory.length;
+  const isSubmitButtonDisabled =
+    !formik.isValid || analyzeMessagesStore.isFetchingPostMessage;
+  const isInputDisabled = analyzeMessagesStore.isFetchingPostMessage;
+  // console.log('isSubmitButtonDisabled', {
+  //   isValid: formik.isValid,
+  //   isFetchingPostMessage: analyzeMessagesStore.isFetchingPostMessage,
+  // });
+
+  const handleChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { target } = event;
+    formik.setFieldValue('text', target.value);
+  };
 
   return (
     <Box
@@ -71,14 +91,19 @@ const AnalyzeMessagesChatPage = () => {
         }}
       >
         <Box sx={{ paddingX: '12px' }}>
-          <Input fullWidth />
+          <Input
+            fullWidth
+            onChange={handleChangeText}
+            disabled={isInputDisabled}
+          />
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
           <Button
             // sxProps={{ backgroundColor: appUI.colors.mainBlue }}
             backgroundType="filled"
             title="Анализ"
-            onClick={handlePostMessage}
+            disabled={isSubmitButtonDisabled}
+            onClick={formik.submitForm}
           />
           {/* <ButtonIcon Icon={Basket} />
           <ButtonIcon Icon={Save} /> */}

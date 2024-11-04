@@ -25,7 +25,8 @@ const SignUpStep1 = (props: SignUpStep1PropsI) => {
     const { target } = event;
     formikContext.setFieldValue('email', target.value);
   };
-  const disabledButton = !formikContext.isValid || inProgressEntrancePath;
+  const isSubmitButtonDisabled =
+    !formikContext.isValid || inProgressEntrancePath;
 
   return (
     <FormikProvider value={formikContext}>
@@ -66,7 +67,7 @@ const SignUpStep1 = (props: SignUpStep1PropsI) => {
           title="Зарегистрироваться"
           backgroundType="filled"
           onClick={onClickSendPersonalData}
-          disabled={disabledButton}
+          disabled={isSubmitButtonDisabled}
         />
         {/* <Box
         sx={{

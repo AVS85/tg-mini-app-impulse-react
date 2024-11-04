@@ -4,7 +4,7 @@ import { Text } from '@/components/atoms';
 interface ButtonPropsI {
   disabled?: boolean;
   icon?: React.FC<SvgIconProps>;
-  type?: 'round' | 'square';
+  type?: 'button' | 'submit' | 'reset';
   backgroundType?: 'transparent' | 'filled';
   title?: string;
   onClick?: () => void;
@@ -15,13 +15,14 @@ interface ButtonPropsI {
 const Button = (props: ButtonPropsI) => {
   const {
     // icon,
-    // type = 'square',
+
     backgroundType,
     title,
     onClick,
     variant,
     sxProps,
     disabled,
+    type,
   } = props;
 
   const backgroundColor = (() => {
@@ -63,6 +64,7 @@ const Button = (props: ButtonPropsI) => {
         },
         ...sxProps,
       }}
+      type={type}
     >
       {title && (
         <Text.h2 bold color="#FFF">
