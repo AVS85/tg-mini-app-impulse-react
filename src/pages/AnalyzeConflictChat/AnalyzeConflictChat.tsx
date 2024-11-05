@@ -8,7 +8,7 @@ import {
   Input,
   ScrollBox,
 } from '@/components/atoms';
-import { useFormik } from 'formik';
+import { FormikHelpers, useFormik } from 'formik';
 import * as Yup from 'yup';
 interface FormikValuesAnalyzeMessagesPageI {
   text: string;
@@ -18,8 +18,12 @@ const AnalyzeConflictChatPage = () => {
   const { analyzeConflictStore } = useStores();
   const { chatHistory } = analyzeConflictStore;
 
-  const formikSubmit = async (values: FormikValuesAnalyzeMessagesPageI) => {
+  const formikSubmit = async (
+    values: FormikValuesAnalyzeMessagesPageI,
+    helpers: FormikHelpers<FormikValuesAnalyzeMessagesPageI>
+  ) => {
     await analyzeConflictStore.postMessage(values.text);
+    helpers.resetForm();
   };
 
   const formik = useFormik<FormikValuesAnalyzeMessagesPageI>({
@@ -31,7 +35,7 @@ const AnalyzeConflictChatPage = () => {
     validationSchema: Yup.object().shape({
       text: Yup.string().required('Обязательное поле'),
     }),
-    onSubmit: (values) => formikSubmit(values),
+    onSubmit: (values, helpers) => formikSubmit(values, helpers),
   });
 
   const isChatHistoryExist = Array.isArray(chatHistory) && chatHistory.length;

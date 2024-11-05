@@ -4,9 +4,10 @@ import MicIcon from '@mui/icons-material/Mic';
 import { PostOutline } from '@/components/icons';
 
 interface InputMessagesI {
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onSubmitText: (e?: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onSubmitText?: () => void;
 }
+
 const CustomMicIcon = () => (
   <SvgIcon>
     <MicIcon sx={{ color: '#1E2F57' }} />
