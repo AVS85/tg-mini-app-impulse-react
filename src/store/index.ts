@@ -16,6 +16,7 @@ class RootStore {
   constructor() {
     this.authStore = new Auth(this);
     this.analyzeConflictStore = new AnalyzeConflict(this);
+
     this.analyzeMessagesStore = new AnalyzeMessagesStore(this);
     this.chatStore = new ChatStore(this);
   }

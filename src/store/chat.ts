@@ -30,22 +30,22 @@ class ChatStore {
   /**
    * @description  Отправка сообщения на анализ
    */
-  postMessage = async (analyze_message: string) => {
+  postMessage = async (question: string) => {
     try {
       this.setIsFetchingPostMessage(true);
       const clientId = this.rootStore.authStore.client?.id;
 
-      if (clientId && analyze_message) {
+      if (clientId && question) {
         // добавление в чат сообщения пользователя
         this.addItemChatHistory({
           party: PartyEnum.PARTY_A,
-          content: analyze_message,
+          content: question,
         });
 
         // запрос
         const { data } = await api.chat.post({
-          userId: clientId,
-          emotion_note: analyze_message,
+          clientId,
+          question,
         });
 
         // добавление в чат ответа ai

@@ -2,8 +2,8 @@ import { AxiosResponse } from 'axios';
 import axios from '../instanceAxios';
 
 interface PostMessagePayloadI {
-  userId: string;
-  emotion_note: string;
+  clientId: string;
+  question: string;
 }
 
 interface PostMessageResponseT {
