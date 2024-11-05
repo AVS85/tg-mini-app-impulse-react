@@ -33,7 +33,8 @@ class AuthStore {
     this.rootStore = rootStore;
 
     autorun(() => {
-      // TODO: тут нужна проверка на соответствие типу
+      /** При рестарте получаем данные об "авторизации" из localStorage  */
+      // TODO: тут нужна проверка на соответствие типу!?
       const aimpulseAuth = localStorage.getItem('AimpulseAuth');
       if (aimpulseAuth) {
         const { clientInfo } = JSON.parse(aimpulseAuth);
@@ -50,10 +51,9 @@ class AuthStore {
     /**
      * 1. отправляем почту клиента
      * 2. получаем данные созданного клиента
-     * 3. отправляем clientId в auth (как это работает?)
+     * 3. отправляем clientId в auth (зачем с фронта это делать?)
      * 4. получаем состояние авторизации :))
      */
-
     try {
       this.setInProgressEntrancePath(true);
       await this.clientSave(email);
@@ -82,7 +82,6 @@ class AuthStore {
   clientGet = async (email: string) => {
     try {
       const { data } = await api.auth.clientGet({ email });
-
       return data;
     } catch (error) {
       throw `[clientGet]: ${error}`;
@@ -119,7 +118,7 @@ class AuthStore {
 
   logout = () => {
     this.authStatus = AuthStepperEnum.LOGOUT;
-    localStorage.setItem('authStatus', '');
+    localStorage.removeItem('AimpulseAuth');
   };
 
   cleanup = () => {
