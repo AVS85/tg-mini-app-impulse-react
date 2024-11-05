@@ -37,7 +37,8 @@ const BottomNavigation = () => {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: '20px',
+        paddingX: '20px',
+        paddingY: '15px',
       }}
     >
       <Box>

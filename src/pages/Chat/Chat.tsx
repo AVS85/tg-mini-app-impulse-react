@@ -40,23 +40,20 @@ const ChatPage = () => {
     onSubmit: (values, helpers) => formikSubmit(values, helpers),
   });
 
-  // useEffect(() => {
-  //   console.log(formik.values);
-  // }, [formik.values]);
-
   const handleChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = event;
     formik.setFieldValue('text', target.value);
   };
 
   const isChatHistoryExist = Array.isArray(chatHistory) && chatHistory.length;
+
   return (
     <Box
       sx={{
         // border: '1px solid red',
         display: 'flex',
         flexDirection: 'column',
-        gap: '40px',
+        gap: '25px',
         flex: 1,
       }}
     >
@@ -69,6 +66,8 @@ const ChatPage = () => {
             flexDirection: 'column',
             gap: '20px',
             width: '100%',
+            boxSizing: 'border-box',
+            paddingX: '20px',
           }}
         >
           {isChatHistoryExist &&
@@ -82,11 +81,13 @@ const ChatPage = () => {
         </Box>
       </ScrollBox>
 
-      <InputMessages
-        value={formik.values.text}
-        onChange={handleChangeText}
-        onSubmitText={formik.submitForm}
-      />
+      <Box sx={{ paddingX: '10px' }}>
+        <InputMessages
+          value={formik.values.text}
+          onChange={handleChangeText}
+          onSubmitText={formik.submitForm}
+        />
+      </Box>
     </Box>
   );
 };

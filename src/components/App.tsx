@@ -8,7 +8,7 @@ import {
   // useNavigate,
 } from 'react-router-dom';
 
-import { MainTemplate, EmptyTemplate } from './templates';
+import { MainTemplate } from './templates';
 import {
   AnalyzeConflict,
   AnalyzeConflictChat,
@@ -24,6 +24,7 @@ import { ThemeProvider, createTheme } from '@mui/material';
 import { appTheme } from '@/common/theme';
 import { AuthProvider } from '@/navigation/authProvider';
 import Start from '@/pages/Start';
+import { BottomNavigation, Header } from './entity';
 
 export enum RouterPathEnum {
   'INDEX' = '/',
@@ -73,13 +74,20 @@ export const App = () => (
       <BrowserRouter>
         <BackButtonManipulator />
         <Routes>
-          <Route element={<EmptyTemplate />}>
+          <Route element={<MainTemplate />}>
             <Route index element={<Start />} />
             <Route path="/signUp" element={<SignUp />} />
           </Route>
 
           <Route element={<AuthProvider />}>
-            <Route element={<MainTemplate />}>
+            <Route
+              element={
+                <MainTemplate
+                  slotHeader={<Header />}
+                  slotNavigation={<BottomNavigation />}
+                />
+              }
+            >
               <Route path={RouterPathEnum.CHAT} element={<Chat />} />
               <Route
                 path={RouterPathEnum.ANALYZE_CONFLICT}

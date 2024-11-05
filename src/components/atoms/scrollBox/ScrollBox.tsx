@@ -22,7 +22,8 @@ const ScrollBox = (props: ScrollBoxPropsI) => {
         flexDirection: 'column',
         gap: '20px',
         // padding: '20px',
-        alignItems: 'center',
+        // alignItems: 'center',
+        // justifyContent: 'flex-end',
         overflowY: 'scroll',
         flex: 1,
         '&::-webkit-scrollbar': {

@@ -1,16 +1,21 @@
 import { Outlet } from 'react-router-dom';
 import { Container, Box } from '@mui/material';
-import { BottomNavigation, Header } from '@/components/entity';
 
-// interface MainTemplateProps {
-//   header?: React.ReactNode;
-//   // children: React.ReactNode;
-// }
+interface MainTemplateProps {
+  slotHeader?: JSX.Element;
+  slotNavigation?: JSX.Element;
+  // header?: React.ReactNode;
+  // children: React.ReactNode;
+}
 
-const MainTemplate = () => {
-  // const { header } = props;
+const MainTemplate = (props: MainTemplateProps) => {
+  const { slotHeader, slotNavigation } = props;
+
+  const isHeaderExist = !!slotHeader;
+  const isNavigationExist = !!slotNavigation;
   return (
     <Container
+      disableGutters
       sx={{
         // border: '1px solid grey',
         backgroundColor: '#EFF1F2',
@@ -20,12 +25,13 @@ const MainTemplate = () => {
         maxHeight: '100vh',
         width: '100%',
         maxWidth: '769px',
+        paddingRight: 0,
+        paddingLeft: 0,
         // overflow: 'hidden',
       }}
     >
-      <Box component="header">
-        <Header />
-      </Box>
+      {isHeaderExist && <Box component="header">{slotHeader}</Box>}
+
       <Box
         component="main"
         sx={{
@@ -33,20 +39,13 @@ const MainTemplate = () => {
           display: 'flex',
           height: '100%',
           overflowY: 'hidden',
-          paddingBottom: '30px',
+          // paddingBottom: '30px',
         }}
       >
         <Outlet />
       </Box>
-      <Box
-        sx={
-          {
-            // border: '1px solid grey',
-          }
-        }
-      >
-        <BottomNavigation />
-      </Box>
+
+      {isNavigationExist && <Box component="nav">{slotNavigation}</Box>}
     </Container>
   );
 };

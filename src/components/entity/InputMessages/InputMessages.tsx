@@ -21,30 +21,37 @@ const InputMessages = (props: InputMessagesI) => {
     <Box
       sx={{
         // border: '1px solid red',
-        // margin: '25px',
-        boxShadow: '-4px -4px 8.2px 0px #FFFFFF, 3px 3px 10.9px 0px #C8CFDD',
-        borderRadius: '25px',
-        padding: '13px',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '9px',
+        padding: '10px',
       }}
     >
-      <Input
-        value={value}
-        id="1"
-        fullWidth
-        placeholder="Введите сообщение"
-        onChange={onChange}
-        multiline
-      />
-      <ButtonIcon Icon={CustomMicIcon} type="round" disabled />
-      <ButtonIcon
-        Icon={PostOutline}
-        iconProps={{ width: '20px' }}
-        type="round"
-        onClick={onSubmitText}
-      />
+      <Box
+        sx={{
+          // border: '1px solid red',
+          // margin: '0 24px',
+          boxShadow: '-4px -4px 10px 0px #FFFFFF, 3px 3px 10px 0px #C8CFDD',
+          borderRadius: '25px',
+          padding: '13px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '9px',
+        }}
+      >
+        <Input
+          value={value}
+          id="1"
+          fullWidth
+          placeholder="Введите сообщение"
+          onChange={onChange}
+          multiline
+        />
+        <ButtonIcon Icon={CustomMicIcon} type="round" disabled />
+        <ButtonIcon
+          Icon={PostOutline}
+          iconProps={{ width: '20px' }}
+          type="round"
+          onClick={onSubmitText}
+        />
+      </Box>
     </Box>
   );
 };
