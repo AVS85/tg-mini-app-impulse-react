@@ -15,7 +15,7 @@ const post = (
 ): Promise<AxiosResponse<PostMessageResponseT>> => {
   return axios({
     method: 'post',
-    url: `v1/conflict`,
+    url: `v1/analyze-message`,
     data: {
       ...payload,
     },

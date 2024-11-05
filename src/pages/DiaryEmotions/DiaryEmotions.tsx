@@ -25,7 +25,7 @@ const DiaryEmotions = () => {
           }}
         >
           <WelcomeBox subtitle="Дневник эмоций позволяет вам следить за общим состоянием эмоционального фона и отслеживать прогресс" />
-          <Button title="Добавить запись" backgroundType="filled" />
+          <Button title="Добавить запись" backgroundType="filled" disabled />
         </Box>
       </Box>
     </>

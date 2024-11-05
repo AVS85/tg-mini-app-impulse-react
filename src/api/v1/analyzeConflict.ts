@@ -1,19 +1,31 @@
+import { AxiosResponse } from 'axios';
 import axios from '../instanceAxios';
-import { URL_ANALYZE_CONFLICT } from '../routes';
 
-interface ConflictSendMessagePayloadT {
-  userId: string;
+interface PostConflictPayloadI {
+  clientId: string;
   conflict: string;
 }
 
-interface ConflictSendMessageResponseT {
+interface PostConflictResponseT {
   response: string;
 }
 
-const conflict = {
-  sendMessage: (data: ConflictSendMessagePayloadT) => {
-    return axios.post<ConflictSendMessageResponseT>(URL_ANALYZE_CONFLICT, data);
-  },
+const post = (
+  payload: PostConflictPayloadI
+): Promise<AxiosResponse<PostConflictResponseT>> => {
+  return axios({
+    method: 'post',
+    url: `v1/conflict`,
+    data: {
+      ...payload,
+    },
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  });
 };
+
+const conflict = { post };
 
 export default conflict;

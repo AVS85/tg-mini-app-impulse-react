@@ -1,27 +1,113 @@
-import { appUI } from '@/common/colors';
+import { Fragment } from 'react';
+import { Box } from '@mui/material';
+import { useStores } from '@/store';
+import { observer } from 'mobx-react';
 import {
   Button,
-  ButtonIcon,
   ChatMessageTextBox,
-  // ContentBox,
   Input,
   ScrollBox,
-  // Text,
 } from '@/components/atoms';
-import { Basket, Save } from '@/components/icons';
-// import { WelcomeBox } from '@/components/molecules';
-import { Box } from '@mui/material';
-import { Fragment } from 'react';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+interface FormikValuesAnalyzeMessagesPageI {
+  text: string;
+}
 
-import { mockChat } from './mockChat';
-import { PartyEnum } from '@/types/chat';
+const AnalyzeConflictChatPage = () => {
+  const { analyzeConflictStore } = useStores();
+  const { chatHistory } = analyzeConflictStore;
 
-// interface WelcomeLayerPropsI {
-//   onClick: () => void;
-// }
-// interface ConflictListLayerPropsI {
-//   onClick: () => void;
-// }
+  const formikSubmit = async (values: FormikValuesAnalyzeMessagesPageI) => {
+    await analyzeConflictStore.postMessage(values.text);
+  };
+
+  const formik = useFormik<FormikValuesAnalyzeMessagesPageI>({
+    initialValues: {
+      text: '',
+    },
+    validateOnChange: true,
+    validateOnMount: true,
+    validationSchema: Yup.object().shape({
+      text: Yup.string().required('Обязательное поле'),
+    }),
+    onSubmit: (values) => formikSubmit(values),
+  });
+
+  const isChatHistoryExist = Array.isArray(chatHistory) && chatHistory.length;
+  const isSubmitButtonDisabled =
+    !formik.isValid || analyzeConflictStore.isFetchingPostMessage;
+  const isInputDisabled = analyzeConflictStore.isFetchingPostMessage;
+
+  const handleChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { target } = event;
+    formik.setFieldValue('text', target.value);
+  };
+
+  return (
+    <Box
+      sx={{
+        // border: '1px solid red',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '50px',
+        flex: 1,
+      }}
+    >
+      {/* CHAT */}
+      <ScrollBox>
+        <Box
+          sx={{
+            // border: '1px solid red',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '20px',
+            width: '100%',
+          }}
+        >
+          {isChatHistoryExist &&
+            chatHistory.map((el, index) => {
+              return (
+                <Fragment key={index}>
+                  <ChatMessageTextBox value={el.content} party={el.party} />
+                </Fragment>
+              );
+            })}
+        </Box>
+      </ScrollBox>
+
+      {/* CONTROL */}
+      <Box
+        sx={{
+          // border: '1px solid red',
+          display: 'flex',
+          flexDirection: 'column',
+          width: '100%',
+          gap: '20px',
+        }}
+      >
+        <Box sx={{ paddingX: '12px' }}>
+          <Input
+            fullWidth
+            onChange={handleChangeText}
+            disabled={isInputDisabled}
+          />
+        </Box>
+        <Box sx={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
+          <Button
+            // sxProps={{ backgroundColor: appUI.colors.mainBlue }}
+            backgroundType="filled"
+            title="Анализ"
+            disabled={isSubmitButtonDisabled}
+            onClick={formik.submitForm}
+          />
+          {/* <ButtonIcon Icon={Basket} />
+        <ButtonIcon Icon={Save} /> */}
+        </Box>
+      </Box>
+    </Box>
+  );
+};
 
 // const WelcomeLayer = (props: WelcomeLayerPropsI) => {
 //   const { onClick } = props;
@@ -123,66 +209,4 @@ import { PartyEnum } from '@/types/chat';
 //   );
 // };
 
-const AnalyzeConflictChatPage = () => {
-  // const [isDisplayWelcomeLayer, setIsDisplayWelcomeLayer] = useState(true);
-
-  // const handleClickStart = () => setIsDisplayWelcomeLayer((bool) => !bool);
-  // const handleCreateConflict = () => {};
-  return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-      }}
-    >
-      {/* CHAT */}
-
-      <ScrollBox>
-        <>
-          {mockChat.map((el, index) => {
-            return (
-              <Fragment key={index}>
-                <ChatMessageTextBox
-                  value={el.partyB}
-                  party={PartyEnum.PARTY_B}
-                />
-                <ChatMessageTextBox
-                  value={el.partyA}
-                  party={PartyEnum.PARTY_B}
-                />
-                {/* <ChatMessageTextBox value={el.partyB} party="PARTY_B" />
-                <ChatMessageTextBox value={el.partyA} party="PARTY_A" /> */}
-              </Fragment>
-            );
-          })}
-        </>
-      </ScrollBox>
-
-      {/* CONTROL */}
-      <Box
-        sx={{
-          // border: '1px solid red',
-          display: 'flex',
-          flexDirection: 'column',
-          width: '100%',
-          gap: '20px',
-        }}
-      >
-        <Box sx={{ paddingX: '12px' }}>
-          <Input fullWidth />
-        </Box>
-        <Box sx={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
-          <Button
-            sxProps={{ backgroundColor: appUI.colors.mainBlue }}
-            backgroundType="filled"
-            title="Дополнить"
-          />
-          <ButtonIcon Icon={Basket} />
-          <ButtonIcon Icon={Save} />
-        </Box>
-      </Box>
-    </Box>
-  );
-};
-
-export default AnalyzeConflictChatPage;
+export default observer(AnalyzeConflictChatPage);
