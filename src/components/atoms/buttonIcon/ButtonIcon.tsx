@@ -11,6 +11,7 @@ interface ButtonIconPropsI {
   iconProps?: SvgIconProps;
   sxProps?: SxProps;
   onClick?: () => void;
+  disabled?: boolean;
 }
 
 const ButtonIcon = (props: ButtonIconPropsI) => {
@@ -23,6 +24,7 @@ const ButtonIcon = (props: ButtonIconPropsI) => {
     iconProps,
     sxProps = {},
     onClick,
+    disabled,
   } = props;
 
   const isTitleExist = Boolean(title);
@@ -48,6 +50,7 @@ const ButtonIcon = (props: ButtonIconPropsI) => {
       variant="contained"
       color="primary"
       onClick={onClick}
+      disabled={disabled}
       sx={{
         backgroundColor: backgroundColor,
         textTransform: 'none',

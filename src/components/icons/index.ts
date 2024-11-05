@@ -8,6 +8,7 @@ export { default as Diary } from './Diary';
 export { default as HeaderHelp } from './HeaderHelp';
 export { default as Logo } from './Logo';
 export { default as Plus } from './Plus';
+export { default as PostOutline } from './PostOutline';
 export { default as Profile } from './Profile';
 export { default as ProfileFilledIcon } from './ProfileFilledIcon';
 export { default as Save } from './Save';

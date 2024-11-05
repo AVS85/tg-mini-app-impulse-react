@@ -1,10 +1,11 @@
 import { Box, SvgIcon } from '@mui/material';
-import { Button, ButtonIcon, Input } from '@/components/atoms';
+import { ButtonIcon, Input } from '@/components/atoms';
 import MicIcon from '@mui/icons-material/Mic';
+import { PostOutline } from '@/components/icons';
 
 interface InputMessagesI {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onSubmitText: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSubmitText: (e?: React.ChangeEvent<HTMLInputElement>) => void;
 }
 const CustomMicIcon = () => (
   <SvgIcon>
@@ -17,12 +18,11 @@ const InputMessages = (props: InputMessagesI) => {
   return (
     <Box
       sx={{
-        margin: '25px',
+        // border: '1px solid red',
+        // margin: '25px',
         boxShadow: '-4px -4px 8.2px 0px #FFFFFF, 3px 3px 10.9px 0px #C8CFDD',
-
         borderRadius: '25px',
         padding: '13px',
-
         display: 'flex',
         alignItems: 'center',
         gap: '9px',
@@ -35,15 +35,13 @@ const InputMessages = (props: InputMessagesI) => {
         onChange={onChange}
         multiline
       />
-      <ButtonIcon Icon={CustomMicIcon} type="round" />
-      <Box>
-        <Button
-          title="Анализ"
-          backgroundType="filled"
-          // disabled={isSubmitButtonDisabled}
-          onClick={onSubmitText}
-        />
-      </Box>
+      <ButtonIcon Icon={CustomMicIcon} type="round" disabled />
+      <ButtonIcon
+        Icon={PostOutline}
+        iconProps={{ width: '20px' }}
+        type="round"
+        onClick={onSubmitText}
+      />
     </Box>
   );
 };
