@@ -6,6 +6,7 @@ import { PostOutline } from '@/components/icons';
 interface InputMessagesI {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmitText?: () => void;
+  value: string;
 }
 
 const CustomMicIcon = () => (
@@ -15,7 +16,7 @@ const CustomMicIcon = () => (
 );
 
 const InputMessages = (props: InputMessagesI) => {
-  const { onChange, onSubmitText } = props;
+  const { onChange, onSubmitText, value } = props;
   return (
     <Box
       sx={{
@@ -30,6 +31,7 @@ const InputMessages = (props: InputMessagesI) => {
       }}
     >
       <Input
+        value={value}
         id="1"
         fullWidth
         placeholder="Введите сообщение"

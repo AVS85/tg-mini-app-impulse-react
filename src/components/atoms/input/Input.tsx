@@ -10,6 +10,7 @@ interface InputPropsI {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
   multiline?: boolean;
+  value?: string;
 }
 
 const Input = (props: InputPropsI) => {
@@ -23,6 +24,7 @@ const Input = (props: InputPropsI) => {
     placeholder,
     onChange,
     multiline,
+    value,
   } = props;
   return (
     <TextField
@@ -35,6 +37,7 @@ const Input = (props: InputPropsI) => {
       defaultValue={defaultValue}
       disabled={disabled}
       multiline={multiline}
+      value={value}
     />
   );
 };

@@ -1,5 +1,4 @@
 import {
-  // Button,
   // ChatMessageDateBox,
   ChatMessageTextBox,
   ScrollBox,
@@ -9,9 +8,10 @@ import { Box } from '@mui/material';
 
 import { Fragment } from 'react/jsx-runtime';
 import { observer } from 'mobx-react';
-import { useFormik } from 'formik';
+import { FormikHelpers, useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useStores } from '@/store';
+import { useEffect } from 'react';
 interface FormikValuesChatPageI {
   text: string;
 }
@@ -20,8 +20,12 @@ const ChatPage = () => {
   const { chatStore } = useStores();
   const { chatHistory } = chatStore;
 
-  const formikSubmit = async (values: FormikValuesChatPageI) => {
+  const formikSubmit = async (
+    values: FormikValuesChatPageI,
+    helpers: FormikHelpers<FormikValuesChatPageI>
+  ) => {
     await chatStore.postMessage(values.text);
+    helpers.resetForm();
   };
 
   const formik = useFormik<FormikValuesChatPageI>({
@@ -33,8 +37,12 @@ const ChatPage = () => {
     validationSchema: Yup.object().shape({
       text: Yup.string().required('Обязательное поле'),
     }),
-    onSubmit: (values) => formikSubmit(values),
+    onSubmit: (values, helpers) => formikSubmit(values, helpers),
   });
+
+  // useEffect(() => {
+  //   console.log(formik.values);
+  // }, [formik.values]);
 
   const handleChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = event;
@@ -75,6 +83,7 @@ const ChatPage = () => {
       </ScrollBox>
 
       <InputMessages
+        value={formik.values.text}
         onChange={handleChangeText}
         onSubmitText={formik.submitForm}
       />
