@@ -1,4 +1,4 @@
-import { makeAutoObservable, runInAction } from 'mobx';
+import { autorun, makeAutoObservable } from 'mobx';
 import type RootStore from '.';
 import api from '@/api/v1';
 import { GetClientResponseI } from '@/types/api';
@@ -12,21 +12,16 @@ export enum AuthStepperEnum {
   FORBIDDEN = 'user.forbidden', // доступ запрещен
 }
 
+// type LocalStoreAuthInfoT = {
+//     authStatus: AuthStepperEnum,
+//     clientInfo: GetClientResponseI,
+// }
 class AuthStore {
   rootStore: RootStore;
 
-  // authStatus: AuthStepperEnum = AuthStepperEnum.LOGGED;
   authStatus: AuthStepperEnum = AuthStepperEnum.LOGOUT;
 
   client: GetClientResponseI | null = null;
-  // client: GetClientResponseI | null = {
-  //   email: 'seo@ya.ru',
-  //   full_name: null,
-  //   id: '088f3535-6f8c-4b71-ae9f-e162ceb2ec98',
-  //   phone_number: null,
-  //   telegram_id: null,
-  //   user_name: null,
-  // };
 
   inProgressEntrancePath = false;
   setInProgressEntrancePath = (value: boolean) => {
@@ -37,9 +32,14 @@ class AuthStore {
     makeAutoObservable(this);
     this.rootStore = rootStore;
 
-    // autorun(() => {
-    //   this.loadSessionAuth();
-    // });
+    autorun(() => {
+      // TODO: тут нужна проверка на соответствие типу
+      const aimpulseAuth = localStorage.getItem('AimpulseAuth');
+      if (aimpulseAuth) {
+        const { clientInfo } = JSON.parse(aimpulseAuth);
+        this.login(clientInfo);
+      }
+    });
   }
 
   setAuthStatus = (status: AuthStepperEnum) => {
@@ -56,32 +56,15 @@ class AuthStore {
 
     try {
       this.setInProgressEntrancePath(true);
-      console.log('entrancePath [1]...');
-
-      const response1 = await this.clientSave(email);
-      console.log('entrancePath [1] response:', response1);
-
-      console.log('entrancePath [2]...');
-      const response2 = await this.clientGet(email);
-      console.log('entrancePath [2] response:', response2);
-
-      console.log('entrancePath [3]...', {
-        client: this.client,
-      });
-      const clientId = this.client?.id;
+      await this.clientSave(email);
+      const clientInfo = await this.clientGet(email);
+      const { id: clientId } = clientInfo;
       if (clientId) {
-        const response3 = await this.authAdd(clientId);
-        console.log('entrancePath [3] response:', response3);
-
-        console.log('entrancePath [4]...');
-        const response4 = await this.authCheck(email);
-        console.log('entrancePath [4] response:', response4);
-        if (response4?.data?.isAccess === true) {
-          this.login();
-        }
+        await this.authAdd(clientId);
+        const { data } = await this.authCheck(email);
+        if (data?.isAccess === true) this.login(clientInfo);
       }
     } catch (error) {
-      //
       this.cleanup();
     } finally {
       this.setInProgressEntrancePath(false);
@@ -99,9 +82,8 @@ class AuthStore {
   clientGet = async (email: string) => {
     try {
       const { data } = await api.auth.clientGet({ email });
-      runInAction(() => {
-        this.client = data;
-      });
+
+      return data;
     } catch (error) {
       throw `[clientGet]: ${error}`;
     }
@@ -123,9 +105,16 @@ class AuthStore {
     }
   };
 
-  login = () => {
-    this.authStatus = AuthStepperEnum.LOGGED;
-    localStorage.setItem('authStatus', AuthStepperEnum.LOGGED);
+  login = (clientInfo: GetClientResponseI, authStatus?: AuthStepperEnum) => {
+    this.client = clientInfo;
+    this.authStatus = authStatus ?? AuthStepperEnum.LOGGED;
+    localStorage.setItem(
+      'AimpulseAuth',
+      JSON.stringify({
+        authStatus: authStatus ?? AuthStepperEnum.LOGGED,
+        clientInfo,
+      })
+    );
   };
 
   logout = () => {
