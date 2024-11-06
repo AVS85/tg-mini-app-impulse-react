@@ -64,6 +64,8 @@ const ChatPage = () => {
             // border: '1px solid red',
             display: 'flex',
             flexDirection: 'column',
+            flex: 1,
+            justifyContent: 'flex-end',
             gap: '20px',
             width: '100%',
             boxSizing: 'border-box',

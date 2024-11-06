@@ -2,18 +2,18 @@ import { makeAutoObservable } from 'mobx';
 import type RootStore from '.';
 import api from '@/api/v1';
 import { ChatMessagesItem, ChatMessagesT, PartyEnum } from '@/types/chat';
-// import chatMock from './chatMock';
+import chatMock from './chatMock';
 
 class ChatStore {
   rootStore: RootStore;
 
-  // chatHistory: ChatMessagesT | [] = chatMock;
-  chatHistory: ChatMessagesT | [] = [
-    {
-      party: PartyEnum.PARTY_B,
-      content: 'Привет Олег!',
-    },
-  ];
+  chatHistory: ChatMessagesT | [] = chatMock;
+  // chatHistory: ChatMessagesT | [] = [
+  //   {
+  //     party: PartyEnum.PARTY_B,
+  //     content: 'Привет Олег!',
+  //   },
+  // ];
 
   isFetchingPostMessage = false;
 
