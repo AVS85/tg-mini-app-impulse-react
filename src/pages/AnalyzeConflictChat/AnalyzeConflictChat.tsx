@@ -1,15 +1,10 @@
-import { Fragment } from 'react';
 import { Box } from '@mui/material';
 import { useStores } from '@/store';
 import { observer } from 'mobx-react';
-import {
-  Button,
-  ChatMessageTextBox,
-  Input,
-  ScrollBox,
-} from '@/components/atoms';
+import { Button, Input } from '@/components/atoms';
 import { FormikHelpers, useFormik } from 'formik';
 import * as Yup from 'yup';
+import { ChatMessagesFeed } from '@/components/organisms';
 interface FormikValuesAnalyzeMessagesPageI {
   text: string;
 }
@@ -38,7 +33,6 @@ const AnalyzeConflictChatPage = () => {
     onSubmit: (values, helpers) => formikSubmit(values, helpers),
   });
 
-  const isChatHistoryExist = Array.isArray(chatHistory) && chatHistory.length;
   const isSubmitButtonDisabled =
     !formik.isValid || analyzeConflictStore.isFetchingPostMessage;
   const isInputDisabled = analyzeConflictStore.isFetchingPostMessage;
@@ -54,33 +48,12 @@ const AnalyzeConflictChatPage = () => {
         // border: '1px solid red',
         display: 'flex',
         flexDirection: 'column',
-        gap: '50px',
+        gap: '25px',
         flex: 1,
       }}
     >
-      {/* CHAT */}
-      <ScrollBox>
-        <Box
-          sx={{
-            // border: '1px solid red',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '20px',
-            width: '100%',
-          }}
-        >
-          {isChatHistoryExist &&
-            chatHistory.map((el, index) => {
-              return (
-                <Fragment key={index}>
-                  <ChatMessageTextBox value={el.content} party={el.party} />
-                </Fragment>
-              );
-            })}
-        </Box>
-      </ScrollBox>
+      <ChatMessagesFeed listMessages={chatHistory} />
 
-      {/* CONTROL */}
       <Box
         sx={{
           // border: '1px solid red',
@@ -90,7 +63,7 @@ const AnalyzeConflictChatPage = () => {
           gap: '20px',
         }}
       >
-        <Box sx={{ paddingX: '12px' }}>
+        <Box sx={{ paddingX: '20px' }}>
           <Input
             fullWidth
             onChange={handleChangeText}

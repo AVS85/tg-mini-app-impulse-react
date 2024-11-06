@@ -1,17 +1,11 @@
-import {
-  // ChatMessageDateBox,
-  ChatMessageTextBox,
-  ScrollBox,
-} from '@/components/atoms';
 import { InputMessages } from '@/components/entity';
 import { Box } from '@mui/material';
 
-import { Fragment } from 'react/jsx-runtime';
 import { observer } from 'mobx-react';
 import { FormikHelpers, useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useStores } from '@/store';
-import { useEffect } from 'react';
+import { ChatMessagesFeed } from '@/components/organisms';
 interface FormikValuesChatPageI {
   text: string;
 }
@@ -45,8 +39,6 @@ const ChatPage = () => {
     formik.setFieldValue('text', target.value);
   };
 
-  const isChatHistoryExist = Array.isArray(chatHistory) && chatHistory.length;
-
   return (
     <Box
       sx={{
@@ -57,31 +49,7 @@ const ChatPage = () => {
         flex: 1,
       }}
     >
-      <ScrollBox>
-        {/* <ChatMessageDateBox value="Понедельник 21.07.2024" /> */}
-        <Box
-          sx={{
-            // border: '1px solid red',
-            display: 'flex',
-            flexDirection: 'column',
-            flex: 1,
-            justifyContent: 'flex-end',
-            gap: '20px',
-            width: '100%',
-            boxSizing: 'border-box',
-            paddingX: '20px',
-          }}
-        >
-          {isChatHistoryExist &&
-            chatHistory.map((el, index) => {
-              return (
-                <Fragment key={index}>
-                  <ChatMessageTextBox value={el.content} party={el.party} />
-                </Fragment>
-              );
-            })}
-        </Box>
-      </ScrollBox>
+      <ChatMessagesFeed listMessages={chatHistory} />
 
       <Box sx={{ paddingX: '10px' }}>
         <InputMessages

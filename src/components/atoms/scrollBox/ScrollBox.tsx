@@ -17,11 +17,10 @@ const ScrollBox = (props: ScrollBoxPropsI) => {
     <Box
       component="section"
       sx={{
+        // border: '1px solid green',
         position: 'relative',
-        border: '1px solid green',
         display: 'flex',
         flexDirection: 'column',
-        // gap: '20px',
         overflowY: 'scroll',
         flex: 1,
         '&::-webkit-scrollbar': {
@@ -29,7 +28,6 @@ const ScrollBox = (props: ScrollBoxPropsI) => {
         },
         '&::-webkit-scrollbar-thumb': {
           backgroundColor: appUI.colors.accent[600], // Цвет "ползунка"
-          // backgroundColor: '#888', // Цвет "ползунка"
           borderRadius: '2px', // Скругление углов
         },
         '&::-webkit-scrollbar-thumb:hover': {
@@ -37,7 +35,6 @@ const ScrollBox = (props: ScrollBoxPropsI) => {
         },
         '&::-webkit-scrollbar-track': {
           background: 'transparent', // Цвет фона скроллбара
-          // background: '#f1f1f1', // Цвет фона скроллбара
           borderRadius: '24px', // Скругление углов трека
         },
         ...sxProps,
